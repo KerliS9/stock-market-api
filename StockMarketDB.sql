@@ -73,8 +73,8 @@ VALUES
 INSERT INTO
   StockMarketDB.Market_Assets (asset, price)
 VALUES
-  ("ABEV3",14.59),
-  ("BBDC4",16.44),
+  ("ABEV3", 14.59),
+  ("BBDC4", 16.44),
   ("EGIE3", 41.80),
   ("PETR4", 27.96);
   
