@@ -6,22 +6,22 @@ CREATE TABLE StockMarketDB.Customer (
   full_name varchar(100) NOT NULL,
   password varchar(12) NOT NULL,
   investor_profile varchar(50) NOT NULL,
-  account_balance int NOT NULL,
+  account_balance decimal(19, 2) NOT NULL,
   PRIMARY KEY (id) 
 )ENGINE=InnoDB;
 
 CREATE TABLE StockMarketDB.Account_Statement (
   id int AUTO_INCREMENT NOT NULL,
   customer_id int NOT NULL,
-  account_input int,
-  account_out int,
+  account_input decimal(19, 2),
+  account_out decimal(19, 2),
   PRIMARY KEY (id),
   FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id)
 )ENGINE=InnoDB;
  
 CREATE TABLE StockMarketDB.Market_Assets (
   id int AUTO_INCREMENT NOT NULL,
-  assets varchar(6) NOT NULL,
+  asset varchar(6) NOT NULL,
   price decimal(19, 2) NOT NULL,
   PRIMARY KEY (id)
 )ENGINE=InnoDB;
@@ -57,9 +57,11 @@ CREATE TABLE StockMarketDB.Customer_Investiments (
 INSERT INTO
   StockMarketDB.Customer (full_name, password, investor_profile, account_balance)
 VALUES
-  ("Kerli Schroeder", "kerli123", "Arrojado", 5000),
-  ("Mauricio Gerahrdt", "mau1234", "Moderado", 4500),
-  ("Joao Silva", "joao258", "Moderado", 5500);
+  ("Kerli Schroeder", "214563", "Arrojado", 5000),
+  ("Mauricio Gerahrdt", "258796", "Arrojado", 4500),
+  ("Joao Silva", "235461", "Arrojado", 5500),
+  ("Marco Antonio", "879546", "Moderado", 3500),
+  ("Maria Julia", "564897", "Conservador", 7500);
   
 INSERT INTO
   StockMarketDB.Account_Statement (customer_id, account_input, account_out)
@@ -69,7 +71,7 @@ VALUES
   (3, 200, 500);
 
 INSERT INTO
-  StockMarketDB.Market_Assets (assets, price)
+  StockMarketDB.Market_Assets (asset, price)
 VALUES
   ("ABEV3",14.59),
   ("BBDC4",16.44),
