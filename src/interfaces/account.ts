@@ -5,15 +5,10 @@ export interface IAccount {
   accountBalance: number;
 }
 
-/* export interface IAccountByCustomer {
+export interface IAccountByCustomer {
   customerId: number;
   fullName: string;
   investorProfile: string;
-  accountBalance: number;
-} */
-
-export interface IAccountByCustomer {
-  customerId: number;
   accountBalance: number;
 }
 
