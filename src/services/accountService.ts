@@ -7,4 +7,9 @@ export default {
 
   getAccountStatementByCustomerId: async (id: number) => (
     AccountModel.getAccountStatementByCustomerId(id)),
+
+  /* setValueOnAccountByCustomerId: async (dataInput: object) => {
+    const data = await AccountModel.setValueOnAccountByCustomerId(dataInput);
+    return data;
+  }, */
 };

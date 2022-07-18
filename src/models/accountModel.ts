@@ -1,3 +1,4 @@
+// import { ResultSetHeader } from 'mysql2';
 import { IAccountByCustomer, IAccount, IAccountStatementByCustomer } from '../interfaces/account';
 import Connection from './connection';
 
@@ -25,4 +26,11 @@ export default {
     const [result] = await Connection.execute(query, [id]);
     return result as IAccountStatementByCustomer[];
   },
+
+  /* setValueOnAccountByCustomerId: async (dataInput: object): Promise<ResultSetHeader> => {
+    const { customerId, input } = dataInput;
+    const query = 'INSERT INTO Account_Statement (customer_id, account_input) VALUE (1, 150);';
+    const [result] = await Connection.execute<ResultSetHeader>(query, [customerId, input]);
+    return result;
+  }, */
 };

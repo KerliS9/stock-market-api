@@ -17,4 +17,10 @@ export default {
     const result = await AccountService.getAccountStatementByCustomerId(+req.params.id);
     return res.status(StatusCodes.OK).json(result);
   },
+
+  /* setValueOnAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    console.log('controllers', req.body);
+    const result = await AccountService.setValueOnAccountByCustomerId(req.body);
+    return res.status(StatusCodes.CREATED).json(result);
+  }, */
 };
