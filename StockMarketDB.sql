@@ -15,8 +15,9 @@ CREATE TABLE StockMarketDB.Account_Statement (
   customer_id int NOT NULL,
   account_input decimal(19, 2),
   account_out decimal(19, 2),
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id)
+  FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE
 )ENGINE=InnoDB;
  
 CREATE TABLE StockMarketDB.Market_Assets (
@@ -32,7 +33,7 @@ CREATE TABLE StockMarketDB.Brokerage_Firms (
   asset_id int NOT NULL,
   amount_asset int NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id)
+  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 CREATE TABLE StockMarketDB.Companies (
@@ -41,7 +42,7 @@ CREATE TABLE StockMarketDB.Companies (
   company varchar(250) NOT NULL,
   sector varchar(100) NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id)
+  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 CREATE TABLE StockMarketDB.Customer_Investiments (
@@ -49,10 +50,13 @@ CREATE TABLE StockMarketDB.Customer_Investiments (
   customer_id int NOT NULL,
   asset_id int NOT NULL,
   amount_asset int NOT NULL,
+  date DATETIME DEFAULT CURRENT_TIMESTAMP, 
   PRIMARY KEY (id),
-  FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id),
-  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id)
+  FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE,
+  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
 )ENGINE=InnoDB;
+
+SET SQL_SAFE_UPDATES = 0;
 
 INSERT INTO
   StockMarketDB.Customer (full_name, password, investor_profile, account_balance)
@@ -64,11 +68,11 @@ VALUES
   ("Maria Julia", "564897", "Conservador", 7500);
   
 INSERT INTO
-  StockMarketDB.Account_Statement (customer_id, account_input, account_out)
+  StockMarketDB.Account_Statement (customer_id, account_input, account_out, date)
 VALUES
-  (1, 500, 100),
-  (2, 1000, 0),
-  (3, 200, 500);
+  (1, 500, 100, NOW()),
+  (2, 1000, 0, NOW()),
+  (3, 200, 500, NOW());
 
 INSERT INTO
   StockMarketDB.Market_Assets (asset, price)
@@ -99,15 +103,15 @@ VALUES
   (4, "PETROLEO BRASILEIRO S.A. PETROBRAS", "Petróleo");
   
 INSERT INTO
-  StockMarketDB.Customer_Investiments (customer_id, asset_id, amount_asset)
+  StockMarketDB.Customer_Investiments (customer_id, asset_id, amount_asset, date)
 VALUES
-  (1, 1, 100),
-  (1, 2, 200),
-  (1, 3, 500),
-  (1, 4, 400),
-  (2, 2, 150),
-  (2, 3, 100),
-  (2, 4, 100),
-  (3, 1, 500),
-  (3, 3, 500),
-  (3, 4, 400);
+  (1, 1, 100, NOW()),
+  (1, 2, 200, NOW()),
+  (1, 3, 500, NOW()),
+  (1, 4, 400, NOW()),
+  (2, 2, 150, NOW()),
+  (2, 3, 100, NOW()),
+  (2, 4, 100, NOW()),
+  (3, 1, 500, NOW()),
+  (3, 3, 500, NOW()),
+  (3, 4, 400, NOW());
