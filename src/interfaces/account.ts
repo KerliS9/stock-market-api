@@ -22,3 +22,8 @@ export interface IAccountInput {
   customerId: number;
   inputValue: number;
 }
+
+export interface IAccountOutput {
+  customerId: number;
+  outputValue: number;
+}

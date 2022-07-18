@@ -22,4 +22,9 @@ export default {
     const result = await AccountService.setValueOnAccountByCustomerId(req.body);
     return res.status(StatusCodes.CREATED).json(result);
   },
+
+  withdrawValueFromAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.withdrawValueFromAccountByCustomerId(req.body);
+    return res.status(StatusCodes.CREATED).json(result);
+  },
 };
