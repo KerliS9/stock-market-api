@@ -13,8 +13,8 @@ export default {
     return res.status(StatusCodes.OK).json(result);
   },
 
-  getAccountStatementCustomerById: async (req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.getAccountStatementCustomerById(+req.params.id);
+  getAccountStatementByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.getAccountStatementByCustomerId(+req.params.id);
     return res.status(StatusCodes.OK).json(result);
   },
 };

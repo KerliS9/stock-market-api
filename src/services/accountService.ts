@@ -5,6 +5,6 @@ export default {
 
   getCustomerById: async (id: number) => AccountModel.getCustomerById(id),
 
-  getAccountStatementCustomerById: async (id: number) => (
-    AccountModel.getAccountStatementCustomerById(id)),
+  getAccountStatementByCustomerId: async (id: number) => (
+    AccountModel.getAccountStatementByCustomerId(id)),
 };

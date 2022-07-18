@@ -16,7 +16,7 @@ export default {
     return result as IAccountByCustomer[];
   },
 
-  getAccountStatementCustomerById: async (id: number): Promise<IAccountStatementByCustomer[]> => {
+  getAccountStatementByCustomerId: async (id: number): Promise<IAccountStatementByCustomer[]> => {
     const query = `SELECT AT.date, AT.account_input AS accountInput, AT.account_output AS accountOutput
       FROM Customer AS CU
       INNER JOIN Account_Statement AS AT
