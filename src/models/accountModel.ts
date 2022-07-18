@@ -14,8 +14,21 @@ export default {
   },
 
   getCustomerById: async (id: number): Promise<IAccountByCustomer[]> => {
-    const query = `SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile,
-      account_balance AS accountBalance FROM Customer WHERE id = ?;`;
+    const query = `SELECT SUM(X.inputs - X.outputs) AS accountBalance
+    FROM (SELECT
+    AT.customer_id,
+    SUM(AT.account_input) AS inputs,
+    0 AS outputs
+    FROM Account_Statement AS AT
+    GROUP BY AT.customer_id
+    UNION ALL
+    SELECT 
+    AT.customer_id,
+    0 AS inputs,
+    SUM(AT.account_output) AS outputs
+    FROM Account_Statement AS AT
+    GROUP BY AT.customer_id) X
+    WHERE customer_id = ?;`;
     const [result] = await Connection.execute(query, [id]);
     return result as IAccountByCustomer[];
   },
