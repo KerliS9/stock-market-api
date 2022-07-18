@@ -1,4 +1,5 @@
 import AccountModel from '../models/accountModel';
+import { IAccountInput } from '../interfaces/account';
 
 export default {
   getAll: async () => AccountModel.getAll(),
@@ -8,8 +9,8 @@ export default {
   getAccountStatementByCustomerId: async (id: number) => (
     AccountModel.getAccountStatementByCustomerId(id)),
 
-  /* setValueOnAccountByCustomerId: async (dataInput: object) => {
-    const data = await AccountModel.setValueOnAccountByCustomerId(dataInput);
-    return data;
-  }, */
+  setValueOnAccountByCustomerId: async (dataInput: IAccountInput) => {
+    await AccountModel.setValueOnAccountByCustomerId(dataInput);
+    return { message: 'Depósito realizado com sucesso' };
+  },
 };

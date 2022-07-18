@@ -7,6 +7,6 @@ AccountRoutes.get('/account/statement/:id', AccountController.getAccountStatemen
 AccountRoutes.get('/account/:id', AccountController.getCustomerById);
 AccountRoutes.get('/account', AccountController.getAll);
 
-// AccountRoutes.post('/account/input', AccountController.setValueOnAccountByCustomerId);
+AccountRoutes.post('/account/input', AccountController.setValueOnAccountByCustomerId);
 
 export default AccountRoutes;

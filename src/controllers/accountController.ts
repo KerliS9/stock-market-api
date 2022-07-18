@@ -18,9 +18,8 @@ export default {
     return res.status(StatusCodes.OK).json(result);
   },
 
-  /* setValueOnAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
-    console.log('controllers', req.body);
+  setValueOnAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
     const result = await AccountService.setValueOnAccountByCustomerId(req.body);
     return res.status(StatusCodes.CREATED).json(result);
-  }, */
+  },
 };

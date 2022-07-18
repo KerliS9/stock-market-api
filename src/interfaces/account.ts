@@ -17,3 +17,8 @@ export interface IAccountStatementByCustomer {
   accountInput: number;
   accountOutput: number;
 }
+
+export interface IAccountInput {
+  customerId: number;
+  inputValue: number;
+}
