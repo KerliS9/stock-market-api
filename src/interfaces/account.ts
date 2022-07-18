@@ -11,3 +11,9 @@ export interface IAccountByCustomer {
   investorProfile: string;
   accountBalance: number;
 }
+
+export interface IAccountStatementByCustomer {
+  date: Date;
+  accountInput: number;
+  accountOutput: number;
+}

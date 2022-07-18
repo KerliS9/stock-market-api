@@ -1,4 +1,4 @@
-import { IAccountByCustomer, IAccount } from '../interfaces/account';
+import { IAccountByCustomer, IAccount, IAccountStatementByCustomer } from '../interfaces/account';
 import Connection from './connection';
 
 export default {
@@ -14,5 +14,15 @@ export default {
       account_balance AS accountBalance FROM Customer WHERE id = ?;`;
     const [result] = await Connection.execute(query, [id]);
     return result as IAccountByCustomer[];
+  },
+
+  getAccountStatementCustomerById: async (id: number): Promise<IAccountStatementByCustomer[]> => {
+    const query = `SELECT AT.date, AT.account_input AS accountInput, AT.account_output AS accountOutput
+      FROM Customer AS CU
+      INNER JOIN Account_Statement AS AT
+      ON CU.id = AT.customer_id    
+      WHERE customer_id = ?;`;
+    const [result] = await Connection.execute(query, [id]);
+    return result as IAccountStatementByCustomer[];
   },
 };

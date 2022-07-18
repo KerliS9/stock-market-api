@@ -14,7 +14,7 @@ CREATE TABLE StockMarketDB.Account_Statement (
   id int AUTO_INCREMENT NOT NULL,
   customer_id int NOT NULL,
   account_input decimal(19, 2),
-  account_out decimal(19, 2),
+  account_output decimal(19, 2),
   date DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE
@@ -68,7 +68,7 @@ VALUES
   ("Maria Julia", "564897", "Conservador", 7500);
   
 INSERT INTO
-  StockMarketDB.Account_Statement (customer_id, account_input, account_out, date)
+  StockMarketDB.Account_Statement (customer_id, account_input, account_output, date)
 VALUES
   (1, 500, 100, NOW()),
   (1, 200, 100, NOW()),

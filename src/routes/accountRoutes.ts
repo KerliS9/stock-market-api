@@ -3,6 +3,7 @@ import AccountController from '../controllers/accountController';
 
 const AccountRoutes = Router();
 
+AccountRoutes.use('/account/statement/:id', AccountController.getAccountStatementCustomerById);
 AccountRoutes.use('/account/:id', AccountController.getCustomerById);
 AccountRoutes.use('/account', AccountController.getAll);
 
