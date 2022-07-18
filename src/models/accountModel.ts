@@ -1,6 +1,6 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import {
-  IAccountByCustomer, IAccount, IAccountStatementByCustomer,
+  IAccount, IAccountStatementByCustomer,
   IAccountInput, IAccountOutput,
 } from '../interfaces/account';
 import Connection from './connection';
@@ -13,7 +13,7 @@ export default {
     return result as IAccount[];
   },
 
-  getCustomerById: async (id: number): Promise<IAccountByCustomer[]> => {
+  getCustomerAccountBalance: async (id: number) => {
     const query = `SELECT SUM(X.inputs - X.outputs) AS accountBalance
     FROM (SELECT
     AT.customer_id,
@@ -22,15 +22,23 @@ export default {
     FROM Account_Statement AS AT
     GROUP BY AT.customer_id
     UNION ALL
-    SELECT 
+    SELECT
     AT.customer_id,
     0 AS inputs,
     SUM(AT.account_output) AS outputs
     FROM Account_Statement AS AT
     GROUP BY AT.customer_id) X
     WHERE customer_id = ?;`;
-    const [result] = await Connection.execute(query, [id]);
-    return result as IAccountByCustomer[];
+    const [result] = await Connection.execute<RowDataPacket[]>(query, [id]);
+    return result;
+  },
+
+  getCustomerById: async (id: number) => {
+    const query = `SELECT full_name AS fullName, investor_profile AS investorProfile, account_balance
+      FROM Customer WHERE id = ?;`;
+    const [result] = await Connection.execute<RowDataPacket[]>(query, [id]);
+    // console.log(result);
+    return result;
   },
 
   getAccountStatementByCustomerId: async (id: number): Promise<IAccountStatementByCustomer[]> => {

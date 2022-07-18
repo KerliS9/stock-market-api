@@ -5,9 +5,13 @@ export default {
   getAll: async () => AccountModel.getAll(),
 
   getCustomerById: async (id: number) => {
-    const [result] = await AccountModel.getCustomerById(id);
-    const { accountBalance } = result;
-    return { id, accountBalance };
+    const [customerData] = await AccountModel.getCustomerById(id);
+    const [accountStatement] = await AccountModel.getCustomerAccountBalance(id);
+    return {
+      fullName: customerData.fullName,
+      investorProfile: customerData.investorProfile,
+      accountBalance: +customerData.account_balance + +accountStatement.accountBalance,
+    };
   },
 
   getAccountStatementByCustomerId: async (id: number) => (
