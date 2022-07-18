@@ -17,4 +17,15 @@ export default {
     const [result] = await Connection.execute(query, [id]);
     return result as IAssetByAssetId[];
   },
+
+  getAssetByCustomerId: async (id: number) => {
+    const query = `SELECT CI.customer_id AS customerId, CI.asset_id AS assetId, CI.amount_asset AS amountAsset, MA.price AS unitPrice,
+      CI.amount_asset * MA.price AS totalInvestments
+      FROM Customer_Investments AS CI
+      INNER JOIN Market_Assets AS MA
+      ON CI.asset_id = MA.id
+      WHERE customer_id = ?;`;
+    const [result] = await Connection.execute(query, [id]);
+    return result;
+  },
 };

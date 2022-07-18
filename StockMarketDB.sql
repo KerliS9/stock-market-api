@@ -45,7 +45,7 @@ CREATE TABLE StockMarketDB.Companies (
   FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-CREATE TABLE StockMarketDB.Customer_Investiments (
+CREATE TABLE StockMarketDB.Customer_Investments (
   id int AUTO_INCREMENT NOT NULL,
   customer_id int NOT NULL,
   asset_id int NOT NULL,
@@ -103,7 +103,7 @@ VALUES
   (4, "PETROLEO BRASILEIRO S.A. PETROBRAS", "Petróleo");
   
 INSERT INTO
-  StockMarketDB.Customer_Investiments (customer_id, asset_id, amount_asset, date)
+  StockMarketDB.Customer_Investments (customer_id, asset_id, amount_asset, date)
 VALUES
   (1, 1, 100, NOW()),
   (1, 2, 200, NOW()),
