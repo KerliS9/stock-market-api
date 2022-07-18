@@ -11,3 +11,11 @@ export interface IAsset {
   asset: string;
   price: number;
 }
+
+export interface IAssetByCustomerId {
+  customerId: number;
+  assetId: string;
+  amountAsset: number;
+  unitPrice: number;
+  totalInvestments: number;
+}

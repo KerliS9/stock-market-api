@@ -13,7 +13,7 @@ export default {
     return res.status(StatusCodes.OK).json(result);
   },
 
-  getAssetByCustomerId: async (req: Request, res: Response) => {
+  getAssetByCustomerId: async (req: Request, res: Response): Promise<Response> => {
     const result = await AssetService.getAssetByCustomerId(+req.params.id);
     return res.status(StatusCodes.OK).json(result);
   },
