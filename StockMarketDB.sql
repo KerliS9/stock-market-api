@@ -71,8 +71,13 @@ INSERT INTO
   StockMarketDB.Account_Statement (customer_id, account_input, account_out, date)
 VALUES
   (1, 500, 100, NOW()),
+  (1, 200, 100, NOW()),
+  (1, 300, 400, NOW()),
   (2, 1000, 0, NOW()),
-  (3, 200, 500, NOW());
+  (2, 0, 100, NOW()),
+  (2, 0, 200, NOW()),
+  (3, 200, 500, NOW()),
+  (3, 200, 0, NOW());
 
 INSERT INTO
   StockMarketDB.Market_Assets (asset, price)
