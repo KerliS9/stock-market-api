@@ -90,10 +90,6 @@ VALUES
 INSERT INTO
   StockMarketDB.Brokerage_Firms (broker, asset_id, amount_asset)
 VALUES
-  ("Rico", 1, 500),
-  ("Rico", 2, 1000),
-  ("Rico", 3, 2400),
-  ("Rico", 4, 20000),
   ("XP Investimentos", 1, 5500),
   ("XP Investimentos", 2, 5000),
   ("XP Investimentos", 3, 4400),

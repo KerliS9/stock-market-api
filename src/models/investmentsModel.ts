@@ -10,4 +10,11 @@ export default {
       .execute<ResultSetHeader>(query, [customerId, ativoId, quantity]);
     return result;
   },
+
+  updateAmountAssetOnBrokerageFirm: async (newQuantity: number, id: number) => {
+    console.log('model', newQuantity, id);
+    const query = 'UPDATE Brokerage_Firms SET amount_asset = ? WHERE asset_id = ?;';
+    const [result] = await Connection.execute(query, [newQuantity, id]);
+    return result;
+  },
 };
