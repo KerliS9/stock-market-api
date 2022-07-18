@@ -3,3 +3,9 @@ export interface ITakeAsset {
   ativoId: number;
   quantity: number;
 }
+
+export interface IAssetPurchased {
+  ativoId: number;
+  quantity: number;
+  purchasePrice: number;
+}
