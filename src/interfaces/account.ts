@@ -1,8 +1,7 @@
-export interface IAccount {
+export interface ICustomers {
   customerId: number;
   fullName: string;
   investorProfile: string;
-  accountBalance: number;
 }
 
 export interface IAccountByCustomer {

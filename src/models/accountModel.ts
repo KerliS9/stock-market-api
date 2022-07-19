@@ -1,16 +1,15 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 import {
-  IAccount, IAccountStatementByCustomer,
+  ICustomers, IAccountStatementByCustomer,
   IAccountInput, IAccountOutput,
 } from '../interfaces/account';
 import Connection from './connection';
 
 export default {
-  getAll: async (): Promise<IAccount[]> => {
-    const query = `SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile,
-    account_balance AS accountBalance FROM Customer;`;
+  getAll: async (): Promise<ICustomers[]> => {
+    const query = 'SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile FROM Customer;';
     const [result] = await Connection.execute(query);
-    return result as IAccount[];
+    return result as ICustomers[];
   },
   // saldo
   getCustomerAccountBalance: async (id: number) => {
