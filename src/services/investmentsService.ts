@@ -8,11 +8,11 @@ import AccountService from './accountService';
 export default {
   buyAsset: async (asset: ITradeAsset): Promise<IAssetPurchased | IError> => {
     const { customerId, assetId, quantity } = asset;
-    await InvestmentsModel.buyAsset(asset);
     const assetOnBroker = await AssetModel.getAssetById(assetId);
     const { amountAsset, price } = assetOnBroker[0];
     const newQuantity = amountAsset - quantity;
     if (newQuantity < 0) return { message: 'This quantity is not available at this broker for this asset' };
+    await InvestmentsModel.buyAsset(asset);
     await InvestmentsModel.updateAmountAssetOnBrokerageFirm(newQuantity, assetId);
     const outputValue = asset.quantity * price;
     const dataOutput = { customerId, outputValue };
