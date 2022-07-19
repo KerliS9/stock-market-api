@@ -8,7 +8,6 @@ export const inputValue = (req: Request, _res: Response, next: NextFunction) => 
     inputValue: Joi.number().greater(0).required(),
   });
   const { error } = input.validate(req.body);
-  console.log('entrou aqui', error);
   if (error) {
     const { type, message } = error.details[0];
     const status = type === 'any.required' ? 400 : 422;
