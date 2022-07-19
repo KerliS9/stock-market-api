@@ -5,5 +5,11 @@ export default {
 
   getAssetById: async (id: number) => AssetModel.getAssetById(id),
 
-  getAssetByCustomerId: async (id: number) => AssetModel.getAssetByCustomerId(id),
+  getAssetByCustomerId: async (id: number) => {
+    const result = await AssetModel.getAllInvestmentsByCustomerId(id);
+    console.log(result);
+    // inserir com map na tabela Customer_Custody;
+    const test = await AssetModel.getAssetByCustomerId(id);
+    return test;
+  },
 };

@@ -5,7 +5,7 @@ import { ITakeAsset } from '../interfaces/investment';
 export default {
   takeAsset: async (asset: ITakeAsset): Promise<void> => {
     const { customerId, ativoId, quantity } = asset;
-    const query = 'INSERT INTO Customer_Investments (customer_id, asset_id, amount_asset) VALUES (?, ?, ?);';
+    const query = 'INSERT INTO Customer_Investments (customer_id, asset_id, amount_asset_take) VALUES (?, ?, ?);';
     await Connection
       .execute<ResultSetHeader>(query, [customerId, ativoId, quantity]);
   },
