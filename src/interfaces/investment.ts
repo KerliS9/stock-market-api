@@ -1,12 +1,12 @@
 export interface ITradeAsset {
   customerId: number;
-  ativoId: number;
+  assetId: number;
   quantity: number;
 }
 
 export interface IAssetTraded {
   customerId: number;
-  ativoId: number;
+  assetId: number;
   quantity: number;
 }
 
@@ -16,4 +16,8 @@ export interface IAssetPurchased extends IAssetTraded{
 
 export interface IAssetSold extends IAssetTraded {
   totalSale: number;
+}
+
+export interface IError {
+  message: string;
 }
