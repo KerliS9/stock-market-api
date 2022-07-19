@@ -20,11 +20,11 @@ export default {
 
   setValueOnAccountByCustomerId: async (dataInput: IAccountInput) => {
     await AccountModel.setValueOnAccountByCustomerId(dataInput);
-    return { message: 'Depósito realizado com sucesso' };
+    return dataInput;
   },
 
   withdrawValueFromAccountByCustomerId: async (dataOutput: IAccountOutput) => {
     await AccountModel.withdrawValueFromAccountByCustomerId(dataOutput);
-    return { message: 'Saque realizado com sucesso' };
+    return dataOutput;
   },
 };

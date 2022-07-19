@@ -17,9 +17,10 @@ export default {
     const dataOutput = { customerId, outputValue };
     await AccountModel.withdrawValueFromAccountByCustomerId(dataOutput);
     return {
+      customerId,
       ativoId,
       quantity,
-      purchasePrice: outputValue,
+      totalPurchase: outputValue,
     };
   },
 
@@ -34,9 +35,10 @@ export default {
     const dataInput = { customerId, inputValue };
     await AccountModel.setValueOnAccountByCustomerId(dataInput);
     return {
+      customerId,
       ativoId,
       quantity,
-      salePrice: inputValue,
+      totalSale: inputValue,
     };
   },
 };

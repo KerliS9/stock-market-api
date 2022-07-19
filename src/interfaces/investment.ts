@@ -5,14 +5,15 @@ export interface ITradeAsset {
 }
 
 export interface IAssetTraded {
+  customerId: number;
   ativoId: number;
   quantity: number;
 }
 
 export interface IAssetPurchased extends IAssetTraded{
-  purchasePrice: number;
+  totalPurchase: number;
 }
 
 export interface IAssetSold extends IAssetTraded {
-  salePrice: number;
+  totalSale: number;
 }
