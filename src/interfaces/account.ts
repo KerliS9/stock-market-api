@@ -26,3 +26,20 @@ export interface IAccountOutput {
   customerId: number;
   outputValue: number;
 }
+
+export interface IAssetByCustomerId {
+  customerId: number;
+  assetId: number;
+  asset: string;
+  amountAsset: number;
+  unitValue: number;
+  totalInvestments: number;
+  sector: string;
+}
+
+export interface IAssetToCustody {
+  customerId: number;
+  assetId: number;
+  amount: number;
+  sector: string;
+}

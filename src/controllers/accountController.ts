@@ -3,8 +3,13 @@ import { StatusCodes } from 'http-status-codes';
 import AccountService from '../services/accountService';
 
 export default {
-  getAll: async (req: Request, res: Response): Promise<Response> => {
+  getAll: async (_req: Request, res: Response): Promise<Response> => {
     const result = await AccountService.getAll();
+    return res.status(StatusCodes.OK).json(result);
+  },
+
+  getAssetByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.getAssetByCustomerId(+req.params.id);
     return res.status(StatusCodes.OK).json(result);
   },
 

@@ -14,7 +14,7 @@ export interface IAsset {
   company: string;
 }
 
-export interface IAssetByCustomerId {
+/* export interface IAssetByCustomerId {
   customerId: number;
   assetId: number;
   asset: string;
@@ -29,4 +29,4 @@ export interface IAssetToCustody {
   assetId: number;
   amount: number;
   sector: string;
-}
+} */
