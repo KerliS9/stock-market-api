@@ -10,6 +10,8 @@ export interface IAsset {
   id: number;
   asset: string;
   price: number;
+  sector: string;
+  company: string;
 }
 
 export interface IAssetByCustomerId {

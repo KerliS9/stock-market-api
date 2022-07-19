@@ -4,7 +4,10 @@ import { IAsset, IAssetByAssetId, IAssetByCustomerId } from '../interfaces/asset
 
 export default {
   getAll: async (): Promise<IAsset[]> => {
-    const query = 'SELECT * FROM Market_Assets;';
+    const query = `SELECT MA.id, MA.asset, MA.price, CO.sector, CO.company
+      FROM Market_Assets AS MA
+      INNER JOIN Companies AS CO
+      ON MA.id = CO.asset_id;`;
     const [result] = await Connection.execute(query);
     return result as IAsset[];
   },
