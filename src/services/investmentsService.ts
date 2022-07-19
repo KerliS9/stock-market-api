@@ -1,12 +1,12 @@
 import InvestmentsModel from '../models/investmentsModel';
-import { ITakeAsset, IAssetPurchased } from '../interfaces/investment';
+import { ITradeAsset, IAssetPurchased, IAssetSold } from '../interfaces/investment';
 import AssetModel from '../models/assetModel';
 import AccountModel from '../models/accountModel';
 
 export default {
-  takeAsset: async (asset: ITakeAsset): Promise<IAssetPurchased> => {
+  buyAsset: async (asset: ITradeAsset): Promise<IAssetPurchased> => {
     const { customerId, ativoId, quantity } = asset;
-    await InvestmentsModel.takeAsset(asset);
+    await InvestmentsModel.buyAsset(asset);
     // console.log('insertId', insertId);
     const assetOnBroker = await AssetModel.getAssetById(ativoId);
     // console.log('assetOnBroker', assetOnBroker[0]);
@@ -20,6 +20,23 @@ export default {
       ativoId,
       quantity,
       purchasePrice: outputValue,
+    };
+  },
+
+  sellAsset: async (asset: ITradeAsset): Promise<IAssetSold> => {
+    const { customerId, ativoId, quantity } = asset;
+    await InvestmentsModel.sellAsset(asset);
+    const assetOnBroker = await AssetModel.getAssetById(ativoId);
+    const { amountAsset, price } = assetOnBroker[0];
+    const newQuantity = amountAsset + quantity;
+    await InvestmentsModel.updateAmountAssetOnBrokerageFirm(newQuantity, ativoId);
+    const inputValue = quantity * price;
+    const dataInput = { customerId, inputValue };
+    await AccountModel.setValueOnAccountByCustomerId(dataInput);
+    return {
+      ativoId,
+      quantity,
+      salePrice: inputValue,
     };
   },
 };
