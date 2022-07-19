@@ -20,4 +20,12 @@ export interface IAssetByCustomerId {
   asset: string;
   amountAsset: number;
   totalInvestments: number;
+  sector: string;
+}
+
+export interface IAssetToCustody {
+  customerId: number;
+  assetId: number;
+  amount: number;
+  sector: string;
 }

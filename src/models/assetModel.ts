@@ -1,6 +1,6 @@
 import { RowDataPacket } from 'mysql2';
 import Connection from './connection';
-import { IAsset, IAssetByAssetId, IAssetByCustomerId } from '../interfaces/assets';
+import { IAsset, IAssetByAssetId, IAssetByCustomerId, IAssetToCustody } from '../interfaces/assets';
 
 export default {
   getAll: async (): Promise<IAsset[]> => {
@@ -28,24 +28,27 @@ export default {
   },
 
   getAllInvestmentsByCustomerId: async (customerId: number) => {
-    const query = `SELECT customer_id AS customerId, asset_id AS assetId,
-      SUM(amount_asset_take) AS take,
-      SUM(amount_asset_sell) AS sold
-      FROM Customer_Investments
-      WHERE customer_id = ?
-      GROUP BY customer_id, asset_id;`;
+    const query = `SELECT CI.customer_id AS customerId, CI.asset_id AS assetId, CO.sector,
+      SUM(CI.amount_asset_take) AS take,
+      SUM(CI.amount_asset_sell) AS sold
+      FROM Customer_Investments AS CI
+      INNER JOIN Companies AS CO
+      ON CI.asset_id = CO.asset_id
+      WHERE CI.customer_id = ?
+      GROUP BY CI.customer_id, CI.asset_id, CO.sector;`;
     const [result] = await Connection.execute<RowDataPacket[]>(query, [customerId]);
     return result;
   },
 
-  setAssetsToCustody: async (customerId: number, assetId: number, amount: number) => {
-    const query = 'INSERT INTO Customer_Custody (customer_id, asset_id, amount_asset) VALUES (?, ?, ?);';
-    await Connection.execute(query, [customerId, assetId, amount]);
+  setAssetsToCustody: async (custody: IAssetToCustody) => {
+    const { customerId, assetId, amount, sector } = custody;
+    const query = 'INSERT INTO Customer_Custody (customer_id, asset_id, amount_asset, sector) VALUES (?, ?, ?, ?);';
+    await Connection.execute(query, [customerId, assetId, amount, sector]);
   },
 
   getAssetByCustomerId: async (id: number): Promise<IAssetByCustomerId[]> => {
     const query = `SELECT CC.customer_id AS customerId, CC.asset_id AS assetId, MA.asset,
-      CC.amount_asset AS amountAsset, CC.amount_asset * MA.price AS totalInvestments
+      CC.amount_asset AS amountAsset, CC.amount_asset * MA.price AS totalInvestments, CC.sector
       FROM Customer_Custody AS CC
       INNER JOIN Market_Assets AS MA
       ON CC.asset_id = MA.id

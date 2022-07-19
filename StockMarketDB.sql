@@ -60,8 +60,8 @@ CREATE TABLE StockMarketDB.Customer_Investments (
 CREATE TABLE StockMarketDB.Customer_Custody (
 	customer_id int NOT NULL,
     asset_id int NOT NULL,
-	amount_asset int NOT NULL
-    -- PRIMARY KEY (customer_id, asset_id)
+	amount_asset int NOT NULL,
+    sector varchar(100) NOT NULL
 )ENGINE=InnoDB;
 SET SQL_SAFE_UPDATES = 0;
 
