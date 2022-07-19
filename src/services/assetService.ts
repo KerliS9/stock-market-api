@@ -6,10 +6,13 @@ export default {
   getAssetById: async (id: number) => AssetModel.getAssetById(id),
 
   getAssetByCustomerId: async (id: number) => {
-    const result = await AssetModel.getAllInvestmentsByCustomerId(id);
-    console.log(result);
-    // inserir com map na tabela Customer_Custody;
-    const test = await AssetModel.getAssetByCustomerId(id);
-    return test;
+    await AssetModel.deleteAssetsOnCustody(id);
+    const allInvestments = await AssetModel.getAllInvestmentsByCustomerId(id);
+    await Promise.all(allInvestments.map(async ({ customerId, assetId, take, sold }) => {
+      const quantity = take - sold;
+      await AssetModel.setAssetsToCustody(customerId, assetId, quantity);
+    }));
+    const assetsByCustomerId = await AssetModel.getAssetByCustomerId(id);
+    return assetsByCustomerId;
   },
 };

@@ -22,6 +22,7 @@
     "no-underscore-dangle": 0,
     "no-param-reassign": 1,
     "no-new-object": 1,
+    "object-curly-newline": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

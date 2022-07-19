@@ -14,8 +14,8 @@ export interface IAsset {
 
 export interface IAssetByCustomerId {
   customerId: number;
-  assetId: string;
+  assetId: number;
+  asset: string;
   amountAsset: number;
-  unitPrice: number;
   totalInvestments: number;
 }
