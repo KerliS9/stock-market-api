@@ -1,5 +1,6 @@
 import AccountModel from '../models/accountModel';
 import { IAccountByCustomer, IAccountInput, IAccountOutput } from '../interfaces/account';
+import { IError } from '../interfaces/error';
 
 export default {
   getAll: async () => AccountModel.getAll(),
@@ -30,12 +31,19 @@ export default {
   getAccountStatementByCustomerId: async (id: number) => (
     AccountModel.getAccountStatementByCustomerId(id)),
 
-  setValueOnAccountByCustomerId: async (dataInput: IAccountInput) => {
+  setValueOnAccountByCustomerId:
+  async (dataInput: IAccountInput): Promise<IAccountInput | IError> => {
+    if (dataInput.inputValue <= 0) return { message: 'Sorry, value to pay into an account need to be greater than 0' };
     await AccountModel.setValueOnAccountByCustomerId(dataInput);
     return dataInput;
   },
 
-  withdrawValueFromAccountByCustomerId: async (dataOutput: IAccountOutput) => {
+  withdrawValueFromAccountByCustomerId:
+  async (dataOutput: IAccountOutput): Promise<IAccountOutput | IError> => {
+    if (dataOutput.outputValue <= 0) return { message: 'Sorry, value to withdraw from account need to be greater than 0' };
+    const [{ accountBalance }] = await AccountModel
+      .getCustomerAccountBalance(dataOutput.customerId);
+    if (accountBalance < 0) return { message: 'Sorry, you do not have so much money available in your account' };
     await AccountModel.withdrawValueFromAccountByCustomerId(dataOutput);
     return dataOutput;
   },

@@ -1,9 +1,9 @@
 import InvestmentsModel from '../models/investmentsModel';
-import { ITradeAsset, IAssetPurchased, IAssetSold, IError } from '../interfaces/investment';
+import { ITradeAsset, IAssetPurchased, IAssetSold } from '../interfaces/investment';
+import { IError } from '../interfaces/error';
 import AssetModel from '../models/assetModel';
 import AccountModel from '../models/accountModel';
 import AccountService from './accountService';
-// import HttpException from '../helpers/httpException';
 
 export default {
   buyAsset: async (asset: ITradeAsset): Promise<IAssetPurchased | IError> => {
