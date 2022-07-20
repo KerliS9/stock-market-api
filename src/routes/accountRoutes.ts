@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import AccountController from '../controllers/accountController';
+import auth from '../middleware/authMiddleware';
+// import { inputValue, outputValue } from '../middleware/transferValidation';
 
 const AccountRoutes = Router();
 
@@ -8,6 +10,7 @@ AccountRoutes.get('/account/statement/:id', AccountController.getAccountStatemen
 AccountRoutes.get('/account/:id', AccountController.getCustomerById);
 AccountRoutes.get('/account', AccountController.getAll);
 
+AccountRoutes.use(auth.authentication);
 AccountRoutes.post('/account/input', AccountController.setValueOnAccountByCustomerId);
 AccountRoutes.post('/account/output', AccountController.withdrawValueFromAccountByCustomerId);
 

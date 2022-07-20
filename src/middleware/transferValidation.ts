@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import Joi from 'joi';
 import { NextFunction, Request, Response } from 'express';
 import HttpException from '../helpers/httpException';

@@ -1,8 +1,8 @@
+import 'express-async-errors';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { verifyJWTToken } from '../helpers/generateToken';
 import HttpException from '../helpers/httpException';
-import 'express-async-errors';
 
 export default {
   authentication: async (req: Request, res: Response, next: NextFunction) => {
