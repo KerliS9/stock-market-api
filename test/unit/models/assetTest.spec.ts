@@ -46,6 +46,7 @@ describe('Check Asset Service GET: getAllAssets assets from database', () => {
   let processExitStub: SinonStub;
     beforeEach(() => {
       processExitStub = stub(AssetModel, 'getAllAssets').resolves(assets as unknown as IAsset[]);
+      // console.log('processExitStub', processExitStub);
     });
     afterEach(() => {
       sinon.restore();
