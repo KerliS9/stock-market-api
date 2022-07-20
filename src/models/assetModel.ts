@@ -20,6 +20,4 @@ export default {
     const [result] = await Connection.execute(query, [id]);
     return result as IAssetByAssetId[];
   },
-
-  hello: async () => 'Hello World!',
 };
