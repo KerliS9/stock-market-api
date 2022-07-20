@@ -1,22 +1,81 @@
-// import sinon from 'sinon';
+import sinon, { stub, SinonStub } from 'sinon';
 import { expect } from 'chai';
-// import Connection from '../../../src/models/connection';
+import Connection from '../../../src/models/connection';
 import AssetModel from '../../../src/models/assetModel';
-// import assets from '../../__mocks__/assets/assets';
+import AssetService from '../../../src/services/assetService';
+import assets from '../../__mocks__/assets/assets';
+import { IAsset, IAssetByAssetId } from '../../__mocks__/interfaces/assets';
 
-describe('Check Assets Models GET: get all assets from database', () => {
+describe('Check Asset Model GET: getAll assets from database', () => {
   describe('when there are assets in the database', () => {
-    /* before(() => {
-      sinon.stub(Connection, 'execute').resolves(assets);
+    let processExitStub: SinonStub;
+    beforeEach(() => {
+      processExitStub = stub(Connection, 'query').resolves();
     });
-    after(() => {
-      Connection.execute.restore();
-    }); */
+    afterEach(() => {
+      processExitStub.restore();
+    });
   });
   it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
     const response = await AssetModel.getAll();
     expect(response).to.be.an('array');
     expect(response[0]).to.be.an('object');
     expect(response[0]).to.include.all.keys('id', 'asset', 'price', 'sector', 'company');
+  });
+});
+
+describe('Check Asset Model GET: getAssetById from database', () => {
+  /* describe('when there is an asset in the database', () => {
+    beforeEach(() => {
+      return sinon.stub(Connection, 'execute').resolves(assets[0]);
+    });
+    afterEach(() => {
+      Connection.execute.restore();
+    });
+  }); */
+  it('should return an array of one object that contains the keys assetId, asset, price, broker, amountAsset', async () => {
+    const response = await AssetModel.getAssetById(1);
+    expect(response).to.have.lengthOf(1);
+    expect(response[0]).to.be.an('object');
+    expect(response[0]).to.include.all.keys('assetId', 'asset', 'price', 'broker', 'amountAsset');
+  });
+});
+
+describe('Check Asset Service GET: getAll assets from database', () => {
+  describe('when there are assets in the database', () => {
+  let processExitStub: SinonStub;
+    beforeEach(() => {
+      processExitStub = stub(AssetModel, 'getAll').resolves(assets as unknown as IAsset[]);
+      // console.log('processExitStub', processExitStub);
+    });
+    afterEach(() => {
+      sinon.restore();
+      processExitStub.resetHistory();
+    });
+  });
+  it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
+    const response = await AssetService.getAll();
+    expect(response).to.be.an('array');
+    expect(response[0]).to.be.an('object');
+    expect(response[0]).to.include.all.keys('id', 'asset', 'price', 'sector', 'company');
+  });
+});
+
+describe('Check Asset Service GET: getAssetById from database', () => {
+  describe('when there is an asset in the database', () => {
+    let processExitStub: SinonStub;
+    beforeEach(() => {
+      processExitStub = stub(AssetModel, 'getAssetById').resolves(assets as unknown as IAssetByAssetId[]);
+    });
+    afterEach(() => {
+      processExitStub.restore();
+    });
+  
+  });
+  it('should return an array of one object that contains the keys assetId, asset, price, broker, amountAsset', async () => {
+    const response = await AssetService.getAssetById(1);
+    expect(response).to.have.lengthOf(1);
+    expect(response[0]).to.be.an('object');
+    expect(response[0]).to.include.all.keys('assetId', 'asset', 'price', 'broker', 'amountAsset');
   });
 });
