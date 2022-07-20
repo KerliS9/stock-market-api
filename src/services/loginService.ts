@@ -1,4 +1,4 @@
-import generateJWTToken from '../helpers/generateToken';
+import { generateJWTToken } from '../helpers/generateToken';
 import { ILogin } from '../interfaces/login';
 import LoginModel from '../models/loginModel';
 
