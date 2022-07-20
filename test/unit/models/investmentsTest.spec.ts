@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import Connection from '../../../src/models/connection';
 import InvestmentsModel from '../../../src/models/investmentsModel';
 import InvestmentsService from '../../../src/services/investmentsService';
-import tradeAsset from '../../__mocks__/investments/investments';
+import tradeAsset from '../../__mocks__/investments';
 import { ITradeAsset } from '../../__mocks__/interfaces/investments';
 
 describe('Check Investments Model POST: insert asset as amount_asset_take on database with function buyAsset', () => {

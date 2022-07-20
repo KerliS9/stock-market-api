@@ -3,21 +3,21 @@ import { expect } from 'chai';
 import Connection from '../../../src/models/connection';
 import AssetModel from '../../../src/models/assetModel';
 import AssetService from '../../../src/services/assetService';
-import assets from '../../__mocks__/assets/assets';
+import assets from '../../__mocks__/assets';
 import { IAsset, IAssetByAssetId } from '../../__mocks__/interfaces/assets';
 
 describe('Check Asset Model GET: getAll assets from database', () => {
   describe('when there are assets in the database', () => {
     let processExitStub: SinonStub;
     beforeEach(() => {
-      processExitStub = stub(Connection, 'query').resolves();
+      processExitStub = stub(Connection, 'execute').resolves();
     });
     afterEach(() => {
       processExitStub.restore();
     });
   });
   it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
-    const response = await AssetModel.getAll();
+    const response = await AssetModel.getAllAssets();
     expect(response).to.be.an('array');
     expect(response[0]).to.be.an('object');
     expect(response[0]).to.include.all.keys('id', 'asset', 'price', 'sector', 'company');
@@ -41,12 +41,11 @@ describe('Check Asset Model GET: getAssetById from database', () => {
   });
 });
 
-describe('Check Asset Service GET: getAll assets from database', () => {
+describe('Check Asset Service GET: getAllAssets assets from database', () => {
   describe('when there are assets in the database', () => {
   let processExitStub: SinonStub;
     beforeEach(() => {
-      processExitStub = stub(AssetModel, 'getAll').resolves(assets as unknown as IAsset[]);
-      // console.log('processExitStub', processExitStub);
+      processExitStub = stub(AssetModel, 'getAllAssets').resolves(assets as unknown as IAsset[]);
     });
     afterEach(() => {
       sinon.restore();
@@ -54,7 +53,7 @@ describe('Check Asset Service GET: getAll assets from database', () => {
     });
   });
   it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
-    const response = await AssetService.getAll();
+    const response = await AssetService.getAllAssets();
     expect(response).to.be.an('array');
     expect(response[0]).to.be.an('object');
     expect(response[0]).to.include.all.keys('id', 'asset', 'price', 'sector', 'company');
