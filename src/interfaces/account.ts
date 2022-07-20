@@ -20,11 +20,13 @@ export interface IAccountStatementByCustomer {
 export interface IAccountInput {
   customerId: number;
   inputValue: number;
+  message?: string;
 }
 
 export interface IAccountOutput {
   customerId: number;
   outputValue: number;
+  message?: string;
 }
 
 export interface IAssetByCustomerId {

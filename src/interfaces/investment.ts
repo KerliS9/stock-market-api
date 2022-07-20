@@ -12,8 +12,10 @@ export interface IAssetTraded {
 
 export interface IAssetPurchased extends IAssetTraded{
   totalPurchase: number;
+  message?: string;
 }
 
 export interface IAssetSold extends IAssetTraded {
   totalSale: number;
+  message?: string;
 }
