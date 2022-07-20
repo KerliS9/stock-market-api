@@ -10,7 +10,7 @@ export default {
       .execute<ResultSetHeader>(query, [customerId, assetId, quantity]);
   },
 
-  updateAmountAssetOnBrokerageFirm: async (newQuantity: number, assetId: number): Promise<void> => {
+  updateAmountAssetAtBrokerageFirm: async (newQuantity: number, assetId: number): Promise<void> => {
     const query = 'UPDATE Brokerage_Firms SET amount_asset = ? WHERE asset_id = ?;';
     await Connection.execute(query, [newQuantity, assetId]);
   },

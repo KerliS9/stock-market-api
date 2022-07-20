@@ -8,13 +8,13 @@ import {
 import Connection from './connection';
 
 export default {
-  getAll: async (): Promise<ICustomers[]> => {
+  getAllCustomers: async (): Promise<ICustomers[]> => {
     const query = 'SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile FROM Customer;';
     const [result] = await Connection.execute(query);
     return result as ICustomers[];
   },
 
-  deleteAssetsOnCustody: async (customerId: number) => {
+  deleteAssetsAtCustody: async (customerId: number) => {
     const query = 'DELETE FROM Customer_Custody WHERE customer_id = ?;';
     await Connection.execute(query, [customerId]);
   },
@@ -87,14 +87,15 @@ export default {
     return result as IAccountStatementByCustomer[];
   },
   // deposito
-  setValueOnAccountByCustomerId: async (dataInput: IAccountInput): Promise<ResultSetHeader> => {
+  insertDepositAtAccountByCustomerId:
+  async (dataInput: IAccountInput): Promise<ResultSetHeader> => {
     const { customerId, inputValue } = dataInput;
     const query = 'INSERT INTO Account_Statement (customer_id, account_input) VALUE (?, ?);';
     const [result] = await Connection.execute<ResultSetHeader>(query, [customerId, inputValue]);
     return result;
   },
   // saque
-  withdrawValueFromAccountByCustomerId: async (dataOutput: IAccountOutput):
+  insertWithdrawAtAccountByCustomerId: async (dataOutput: IAccountOutput):
   Promise<ResultSetHeader> => {
     const { customerId, outputValue } = dataOutput;
     const query = 'INSERT INTO Account_Statement (customer_id, account_output) VALUE (?, ?);';

@@ -2,7 +2,7 @@ import Connection from './connection';
 import { IAsset, IAssetByAssetId } from '../interfaces/assets';
 
 export default {
-  getAll: async (): Promise<IAsset[]> => {
+  getAllAssets: async (): Promise<IAsset[]> => {
     const query = `SELECT MA.id, MA.asset, MA.price, CO.sector, CO.company
       FROM Market_Assets AS MA
       INNER JOIN Companies AS CO

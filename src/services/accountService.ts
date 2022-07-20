@@ -3,10 +3,10 @@ import { IAccountByCustomer, IAccountInput, IAccountOutput } from '../interfaces
 import { IError } from '../interfaces/error';
 
 export default {
-  getAll: async () => AccountModel.getAll(),
+  getAllCustomers: async () => AccountModel.getAllCustomers(),
 
   getAssetByCustomerId: async (id: number) => {
-    await AccountModel.deleteAssetsOnCustody(id);
+    await AccountModel.deleteAssetsAtCustody(id);
     const allInvestments = await AccountModel.getAllInvestmentsByCustomerId(id);
     await Promise.all(allInvestments.map(async ({ customerId, assetId, sector, take, sold }) => {
       const amount = take - sold;
@@ -34,7 +34,7 @@ export default {
   setValueOnAccountByCustomerId:
   async (dataInput: IAccountInput): Promise<IAccountInput | IError> => {
     if (dataInput.inputValue <= 0) return { message: 'Sorry, value to pay into an account need to be greater than 0' };
-    await AccountModel.setValueOnAccountByCustomerId(dataInput);
+    await AccountModel.insertDepositAtAccountByCustomerId(dataInput);
     return dataInput;
   },
 
@@ -44,7 +44,7 @@ export default {
     const [{ accountBalance }] = await AccountModel
       .getCustomerAccountBalance(dataOutput.customerId);
     if (accountBalance < 0) return { message: 'Sorry, you do not have so much money available in your account' };
-    await AccountModel.withdrawValueFromAccountByCustomerId(dataOutput);
+    await AccountModel.insertWithdrawAtAccountByCustomerId(dataOutput);
     return dataOutput;
   },
 };

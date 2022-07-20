@@ -3,8 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import AccountService from '../services/accountService';
 
 export default {
-  getAll: async (_req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.getAll();
+  getAllCustomers: async (_req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.getAllCustomers();
     return res.status(StatusCodes.OK).json(result);
   },
 

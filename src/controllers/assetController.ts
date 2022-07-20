@@ -3,8 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import AssetService from '../services/assetService';
 
 export default {
-  getAll: async (_req: Request, res: Response): Promise<Response> => {
-    const result = await AssetService.getAll();
+  getAllAssets: async (_req: Request, res: Response): Promise<Response> => {
+    const result = await AssetService.getAllAssets();
     return res.status(StatusCodes.OK).json(result);
   },
 
