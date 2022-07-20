@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/unit/**/*.spec.ts --exit",
-    "test:mocha": "nyc --all --include models --include services --include controllers mocha test/unit/**/*.spec.ts --exit",
+    "test": "mocha -r ts-node/register test/unit/**/*.spec.ts --exit",
+    "test:coverage": "nyc nyc npm run test",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "dev": "nodemon --exec npx ts-node src/server.ts",
@@ -37,9 +37,11 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
     "prettier": "2.7.1",
     "sinon": "^14.0.0",
     "ts-node-dev": "^2.0.0",
+    "ts-sinon": "^2.0.2",
     "typescript": "^4.7.4"
   },
   "dependencies": {
