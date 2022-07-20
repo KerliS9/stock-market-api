@@ -5,6 +5,9 @@ import LoginService from '../services/loginService';
 export default {
   getCustomerLogin: async (req: Request, res: Response): Promise<Response> => {
     const result = await LoginService.getCustomerLogin(req.body);
-    return res.status(StatusCodes.ACCEPTED).json(result);
+    if (result.message) {
+      return res.status(StatusCodes.UNAUTHORIZED).json(result);
+    }
+    return res.status(StatusCodes.OK).json(result);
   },
 };
