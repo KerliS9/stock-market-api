@@ -15,7 +15,10 @@ export default {
 
   getCustomerById: async (req: Request, res: Response): Promise<Response> => {
     const result = await AccountService.getCustomerById(+req.params.id);
-    return res.status(StatusCodes.OK).json(result);
+    if (result[0].message) {
+      return res.status(StatusCodes.NOT_FOUND).json(result[0]);
+    }
+    return res.status(StatusCodes.OK).json(result[0]);
   },
 
   getAccountStatementByCustomerId: async (req: Request, res: Response): Promise<Response> => {

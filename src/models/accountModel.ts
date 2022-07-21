@@ -3,6 +3,8 @@ import {
   ICustomers, IAccountStatementByCustomer,
   IAccountInput, IAccountOutput,
   IAssetByCustomerId, IAssetToCustody,
+  IAccountBalance,
+  IAccountByCustomer,
 } from '../interfaces/account';
 
 import Connection from './connection';
@@ -50,7 +52,7 @@ export default {
     return result as IAssetByCustomerId[];
   },
   // saldo
-  getCustomerAccountBalance: async (id: number) => {
+  getCustomerAccountBalance: async (id: number): Promise<IAccountBalance[]> => {
     const query = `SELECT SUM(X.inputs - X.outputs) AS accountBalance
     FROM (SELECT
     AT.customer_id,
@@ -66,15 +68,20 @@ export default {
     FROM Account_Statement AS AT
     GROUP BY AT.customer_id) X
     WHERE customer_id = ?;`;
-    const [result] = await Connection.execute<RowDataPacket[]>(query, [id]);
-    return result;
+    const [result] = await Connection.execute(query, [id]);
+    return result as IAccountBalance[];
   },
-  // saldo
-  getCustomerById: async (id: number) => {
-    const query = `SELECT id, full_name, investor_profile, account_balance
-      FROM Customer WHERE id = ?;`;
-    const [result] = await Connection.execute<RowDataPacket[]>(query, [id]);
-    return result;
+  // atualiza saldo
+  updateAccountBalanceByCustomerId: async (id: number, accountBalance: number) => {
+    const query = 'UPDATE Customer SET account_balance = ? WHERE id = ?';
+    await Connection.execute(query, [accountBalance, id]);
+  },
+
+  getCustomerById: async (id: number): Promise<IAccountByCustomer[]> => {
+    const query = `SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile,
+    account_balance AS accountBalance FROM Customer WHERE id = ?;`;
+    const [result] = await Connection.execute(query, [id]);
+    return result as IAccountByCustomer[];
   },
   // extrato
   getAccountStatementByCustomerId: async (id: number): Promise<IAccountStatementByCustomer[]> => {

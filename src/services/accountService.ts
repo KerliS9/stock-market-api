@@ -1,5 +1,5 @@
 import AccountModel from '../models/accountModel';
-import { IAccountByCustomer, IAccountInput, IAccountOutput } from '../interfaces/account';
+import { IAccountInput, IAccountOutput } from '../interfaces/account';
 import { IError } from '../interfaces/error';
 
 export default {
@@ -17,15 +17,13 @@ export default {
     return assetsByCustomerId;
   },
 
-  getCustomerById: async (id: number): Promise<IAccountByCustomer> => {
-    const [customerData] = await AccountModel.getCustomerById(id);
-    const [accountStatement] = await AccountModel.getCustomerAccountBalance(id);
-    return {
-      customerId: customerData.id,
-      fullName: customerData.full_name,
-      investorProfile: customerData.investor_profile,
-      accountBalance: +customerData.account_balance + +accountStatement.accountBalance,
-    };
+  getCustomerById: async (id: number) => {
+    const accountStatement = await AccountModel.getCustomerAccountBalance(id);
+    if (accountStatement[0].accountBalance === null) return [{ message: 'Sorry, this customer still doesn\t have an account with us' }];
+    const { accountBalance } = accountStatement[0];
+    await AccountModel.updateAccountBalanceByCustomerId(id, accountBalance);
+    const customerData = await AccountModel.getCustomerById(id);
+    return customerData;
   },
 
   getAccountStatementByCustomerId: async (id: number) => (

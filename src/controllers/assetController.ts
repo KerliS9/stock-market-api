@@ -13,6 +13,6 @@ export default {
     if (result[0].message) {
       return res.status(StatusCodes.NOT_FOUND).json(result[0]);
     }
-    return res.status(StatusCodes.OK).json(result);
+    return res.status(StatusCodes.OK).json(result[0]);
   },
 };
