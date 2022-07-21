@@ -1,11 +1,11 @@
 export const assetById = [
   {
-		id: 1,
-		asset: "ABEV3",
-		price: 14.59,
-		sector: "Consumo",
-		company: "AMBEV S.A."
-	}
+    assetId: 1,
+    asset: "ABEV3",
+    price: 14.59,
+    broker: "XP Investimentos",
+    amountAsset: 5500
+  }
 ]
 
 export const assets = [
