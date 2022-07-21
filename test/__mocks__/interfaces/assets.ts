@@ -1,4 +1,4 @@
-export interface IAssetByAssetId {
+export interface IAssetById {
   assetId: number;
   asset: string;
   price: number;

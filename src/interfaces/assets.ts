@@ -1,9 +1,10 @@
-export interface IAssetByAssetId {
+export interface IAssetById {
   assetId: number;
   asset: string;
   price: number;
   broker: string;
   amountAsset: number;
+  message?: string;
 }
 
 export interface IAsset {

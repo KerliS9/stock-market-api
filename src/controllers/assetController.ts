@@ -10,6 +10,9 @@ export default {
 
   getAssetById: async (req: Request, res: Response): Promise<Response> => {
     const result = await AssetService.getAssetById(+req.params.id);
+    if (result[0].message) {
+      return res.status(StatusCodes.NOT_FOUND).json(result[0]);
+    }
     return res.status(StatusCodes.OK).json(result);
   },
 };

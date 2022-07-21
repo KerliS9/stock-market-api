@@ -1,5 +1,5 @@
 import Connection from './connection';
-import { IAsset, IAssetByAssetId } from '../interfaces/assets';
+import { IAsset, IAssetById } from '../interfaces/assets';
 
 export default {
   getAllAssets: async (): Promise<IAsset[]> => {
@@ -11,13 +11,13 @@ export default {
     return result as IAsset[];
   },
 
-  getAssetById: async (id: number): Promise<IAssetByAssetId[]> => {
+  getAssetById: async (id: number): Promise<IAssetById[]> => {
     const query = `SELECT MA.id AS assetId, MA.asset, MA.price, BK.broker, BK.amount_asset AS amountAsset
       FROM Market_Assets AS MA
       INNER JOIN Brokerage_Firms AS BK
       ON MA.id = BK.asset_id
       WHERE asset_id = ?;`;
     const [result] = await Connection.query(query, [id]);
-    return result as IAssetByAssetId[];
+    return result as IAssetById[];
   },
 };
