@@ -26,16 +26,16 @@ export default {
     return res.status(StatusCodes.OK).json(result);
   },
 
-  setValueOnAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.setValueOnAccountByCustomerId(req.body);
+  insertDepositAtAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.insertDepositAtAccountByCustomerId(req.body);
     if (result.message) {
       return res.status(StatusCodes.CONFLICT).json(result);
     }
     return res.status(StatusCodes.CREATED).json(result);
   },
 
-  withdrawValueFromAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.withdrawValueFromAccountByCustomerId(req.body);
+  insertWithdrawAtAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.insertWithdrawAtAccountByCustomerId(req.body);
     if (result.message) {
       return res.status(StatusCodes.CONFLICT).json(result);
     }

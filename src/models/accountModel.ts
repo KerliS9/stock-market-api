@@ -51,7 +51,7 @@ export default {
     const [result] = await Connection.execute(query, [id]);
     return result as IAssetByCustomerId[];
   },
-  // saldo
+  // compara entradas e saídas
   getCustomerAccountBalance: async (id: number): Promise<IAccountBalance[]> => {
     const query = `SELECT SUM(X.inputs - X.outputs) AS accountBalance
     FROM (SELECT
@@ -74,8 +74,7 @@ export default {
   // atualiza saldo
   updateAccountBalanceByCustomerId: async (id: number, accountBalance: number) => {
     const query = 'UPDATE Customer SET account_balance = ? WHERE id = ?';
-    const [result] = await Connection.execute<ResultSetHeader>(query, [accountBalance, id]);
-    return result;
+    await Connection.execute<ResultSetHeader>(query, [accountBalance, id]);
   },
 
   getCustomerById: async (id: number): Promise<IAccountByCustomer[]> => {
@@ -96,18 +95,15 @@ export default {
   },
   // deposito
   insertDepositAtAccountByCustomerId:
-  async (dataInput: IAccountInput): Promise<ResultSetHeader> => {
+  async (dataInput: IAccountInput) => {
     const { customerId, inputValue } = dataInput;
     const query = 'INSERT INTO Account_Statement (customer_id, account_input) VALUE (?, ?);';
-    const [result] = await Connection.execute<ResultSetHeader>(query, [customerId, inputValue]);
-    return result;
+    await Connection.execute<ResultSetHeader>(query, [customerId, inputValue]);
   },
   // saque
-  insertWithdrawAtAccountByCustomerId: async (dataOutput: IAccountOutput):
-  Promise<ResultSetHeader> => {
+  insertWithdrawAtAccountByCustomerId: async (dataOutput: IAccountOutput) => {
     const { customerId, outputValue } = dataOutput;
     const query = 'INSERT INTO Account_Statement (customer_id, account_output) VALUE (?, ?);';
-    const [result] = await Connection.execute<ResultSetHeader>(query, [customerId, outputValue]);
-    return result;
+    await Connection.execute<ResultSetHeader>(query, [customerId, outputValue]);
   },
 };

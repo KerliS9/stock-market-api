@@ -11,14 +11,24 @@ export const AccountStatement = {
   accountBalance: 15200.7
 }
 
-export const customerByIdWithdraw = {
+export const withdrawByCustomerId = {
 	customerId: 1,
 	outputValue: 10
 }
 
-export const customerByIdDeposit = {
+export const withdrawByCustomerIdWithoutValue = {
+  customerId: 1,
+  outputValue: 0
+}
+
+export const depositByCustomerId = {
   customerId: 1,
   inputValue: 50
+}
+
+export const depositByCustomerIdWithoutValue = {
+  customerId: 1,
+  inputValue: 0
 }
 
 export const accountBalance = [
@@ -27,7 +37,7 @@ export const accountBalance = [
   }
 ]
 
-export const customers = [ // ok
+export const customers = [
   {
     customerId: 1,
     fullName: "Kerli Schroeder",

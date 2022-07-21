@@ -30,19 +30,18 @@ export default {
   getAccountStatementByCustomerId: async (id: number) => (
     AccountModel.getAccountStatementByCustomerId(id)),
 
-  setValueOnAccountByCustomerId:
+  insertDepositAtAccountByCustomerId:
   async (dataInput: IAccountInput): Promise<IAccountInput | IError> => {
     if (dataInput.inputValue <= 0) return { message: 'Sorry, value to pay into an account need to be greater than 0' };
     await AccountModel.insertDepositAtAccountByCustomerId(dataInput);
     return dataInput;
   },
 
-  withdrawValueFromAccountByCustomerId:
+  insertWithdrawAtAccountByCustomerId:
   async (dataOutput: IAccountOutput): Promise<IAccountOutput | IError> => {
     if (dataOutput.outputValue <= 0) return { message: 'Sorry, value to withdraw from account need to be greater than 0' };
-    const [{ accountBalance }] = await AccountModel
-      .getCustomerAccountBalance(dataOutput.customerId);
-    if (accountBalance < 0) return { message: 'Sorry, you do not have so much money available in your account' };
+    const result = await AccountModel.getCustomerAccountBalance(dataOutput.customerId);
+    if (result[0].accountBalance < dataOutput.outputValue) return { message: 'Sorry, you do not have so much money available in your account' };
     await AccountModel.insertWithdrawAtAccountByCustomerId(dataOutput);
     return dataOutput;
   },

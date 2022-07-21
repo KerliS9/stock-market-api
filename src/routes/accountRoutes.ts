@@ -11,7 +11,7 @@ AccountRoutes.get('/account/:id', AccountController.getCustomerById);
 AccountRoutes.get('/account', AccountController.getAllCustomers);
 
 AccountRoutes.use(auth.authentication);
-AccountRoutes.post('/account/input', AccountController.setValueOnAccountByCustomerId);
-AccountRoutes.post('/account/output', AccountController.withdrawValueFromAccountByCustomerId);
+AccountRoutes.post('/account/input', AccountController.insertDepositAtAccountByCustomerId);
+AccountRoutes.post('/account/output', AccountController.insertWithdrawAtAccountByCustomerId);
 
 export default AccountRoutes;
