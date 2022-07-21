@@ -74,7 +74,8 @@ export default {
   // atualiza saldo
   updateAccountBalanceByCustomerId: async (id: number, accountBalance: number) => {
     const query = 'UPDATE Customer SET account_balance = ? WHERE id = ?';
-    await Connection.execute(query, [accountBalance, id]);
+    const [result] = await Connection.execute<ResultSetHeader>(query, [accountBalance, id]);
+    return result;
   },
 
   getCustomerById: async (id: number): Promise<IAccountByCustomer[]> => {

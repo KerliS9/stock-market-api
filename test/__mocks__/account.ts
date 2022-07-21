@@ -7,12 +7,6 @@ export const customerById = [
   }
 ]
 
-export const customerByIdNull = [
-  {
-    message: 'Sorry, this customer still doesn\t have an account with us'
-  }
-]
-
 export const AccountStatement = {
   accountBalance: 15200.7
 }
@@ -30,12 +24,6 @@ export const customerByIdDeposit = {
 export const accountBalance = [
   {
     accountBalance: 100,
-  }
-]
-
-export const accountBalanceNull = [
-  {
-    accountBalance: 0,
   }
 ]
 
@@ -66,6 +54,10 @@ export const customers = [ // ok
     investorProfile: "Conservador"
   }
 ]
+
+export const ResultSetHeaderMock = {
+  name: 'ResultSetHeader'
+}
 
 export const customerByIdInvestments = [
   {

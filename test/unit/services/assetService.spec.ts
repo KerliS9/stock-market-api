@@ -16,14 +16,22 @@ describe('Check Asset Service GET: getAllAssets assets from database', () => {
 });
 
 describe('Check Asset Service GET: getAssetById from database', () => {
-  it('should return an array of one object that contains the keys assetId, asset, price, broker, amountAsset', async () => {
+  it(`when customer exits on database - should return an array of one object that contains the 
+  keys assetId, asset, price, broker, amountAsset`, async () => {
     jest.spyOn(AssetModel, 'getAssetById').mockResolvedValue(assetById);
-    const response = await AssetService.getAssetById(1);
-    expect(response).toHaveLength(1);
+    const [response] = await AssetService.getAssetById(1);
     expect(response).toHaveProperty('assetId');
     expect(response).toHaveProperty('asset');
     expect(response).toHaveProperty('price');
     expect(response).toHaveProperty('broker');
     expect(response).toHaveProperty('amountAsset');
   });
+
+  it('when don\t exists this assetId on database', async () => {
+    jest.spyOn(AssetModel, 'getAssetById').mockResolvedValue([]);
+    const [response] = await AssetService.getAssetById(1);
+    // console.log(response);
+    expect(response).toHaveProperty('message');
+    expect(response.message).toBe('Sorry, this assetId does not exits in our database');
+  })
 });
