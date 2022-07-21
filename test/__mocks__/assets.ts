@@ -2,7 +2,7 @@ export const assetById = [
   {
 		id: 1,
 		asset: "ABEV3",
-		price: "14.59",
+		price: 14.59,
 		sector: "Consumo",
 		company: "AMBEV S.A."
 	}
