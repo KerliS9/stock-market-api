@@ -23,7 +23,7 @@ describe('POST /investments/buy', () => {
         quantity: 10,
       };
       const response = await request(app).post('/investments/buy').send(bodyData);
-      console.log(response);
+      // console.log(response);
       // expect(buyAsset.mock.calls.length).toBe(1);
       expect(response.headers['content-type']).toEqual(expect.stringContaining("json"))
       expect(response.statusCode).toBe(201);
