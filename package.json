@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:mocha": "mocha -r ts-node/register test/unit/**/*.spec.ts --exit",
+    "test:mocha": "mocha -r ts-node/register test/unit/**/*.test.ts --exit",
     "test": "jest --verbose",
     "test:coverage": "nyc nyc npm run test",
     "lint": "eslint . --ext .ts",

@@ -7,7 +7,7 @@ export default {
       FROM Market_Assets AS MA
       INNER JOIN Companies AS CO
       ON MA.id = CO.asset_id;`;
-    const [result] = await Connection.execute(query);
+    const [result] = await Connection.query(query);
     return result as IAsset[];
   },
 
@@ -17,7 +17,7 @@ export default {
       INNER JOIN Brokerage_Firms AS BK
       ON MA.id = BK.asset_id
       WHERE asset_id = ?;`;
-    const [result] = await Connection.execute(query, [id]);
+    const [result] = await Connection.query(query, [id]);
     return result as IAssetByAssetId[];
   },
 };

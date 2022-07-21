@@ -1,4 +1,4 @@
-import Connection from '../../../src/models/connection';
+/* import Connection from '../../../src/models/connection';
 import InvestmentsModel from '../../../src/models/investmentsModel';
 import { tradeAsset } from '../../__mocks__/investments';
 
@@ -33,7 +33,7 @@ describe('POST /investments/buy', () => {
       // expect(buyAsset.mock.calls[0][2]).toBe(bodyData.quantity);
     });
   });
-})
+}) */
 
 /* describe('Check Investments Model POST: insert asset as "amount_asset_take" on database with function buyAsset', () => {
   it('should insert an object on database, object that contains the keys customerId, assetId, quantity', async () => {
