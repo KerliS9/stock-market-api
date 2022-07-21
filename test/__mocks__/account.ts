@@ -1,15 +1,17 @@
-export const customerById = {
-  customerId: 1,
-  fullName: "Kerli Schroeder",
-  investorProfile: "Arrojado",
-  accountBalance: 15200.7
-}
+export const customerById = [
+  {
+    customerId: 1,
+    fullName: "Kerli Schroeder",
+    investorProfile: "Arrojado",
+    accountBalance: 15200.7
+  }
+]
 
-export const customerByIdSaved = {
-  fullName: "Kerli Schroeder",
-  investorProfile: "Arrojado",
-  accountBalance: 15200.7
-}
+export const customerByIdNull = [
+  {
+    message: 'Sorry, this customer still doesn\t have an account with us'
+  }
+]
 
 export const AccountStatement = {
   accountBalance: 15200.7
@@ -25,7 +27,19 @@ export const customerByIdDeposit = {
   inputValue: 50
 }
 
-export const customers = [
+export const accountBalance = [
+  {
+    accountBalance: 100,
+  }
+]
+
+export const accountBalanceNull = [
+  {
+    accountBalance: 0,
+  }
+]
+
+export const customers = [ // ok
   {
     customerId: 1,
     fullName: "Kerli Schroeder",
