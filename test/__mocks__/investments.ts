@@ -31,6 +31,15 @@ export const customerById = [
   },
 ];
 
+export const customerByIdProfileOK = [
+  {
+    customerId: 1,
+    fullName: 'Kerli Schroeder',
+    investorProfile: 'Arrojado',
+    accountBalance: 15200.7,
+  },
+];
+
 export const investmentsByCustomerId = [
   {
     customerId: 1,
