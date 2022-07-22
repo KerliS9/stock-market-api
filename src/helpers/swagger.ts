@@ -10,6 +10,50 @@ const swaggerDocument = {
     version: '1.0.0',
   },
   path: {
+    '/login': {
+      post: {
+        summary: 'Authenticate login',
+        description: 'Method used in this route to verify if customer is allowed to access platform',
+        tags: ['login'],
+        operationId: 'getCustomerLogin',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/BodyLogin',
+              },
+              examples: {
+                Login: {
+                  summary: 'Customer data',
+                  value: {
+                    fullName: 'Kerli Schroeder',
+                    password: '214563',
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          401: {
+            description: 'Token not found',
+          },
+          404: {
+            description: 'Full name and/or password is invalid',
+          },
+          200: {
+            description: 'OK',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     '/assets': {
       get: {
         summary: 'Get all assets',
@@ -74,7 +118,7 @@ const swaggerDocument = {
                 $ref: '#/components/schemas/BodyAssetToTrade',
               },
               examples: {
-                Product: {
+                Asset: {
                   summary: 'Asset to buy',
                   value: {
                     customerId: 1,
@@ -122,7 +166,7 @@ const swaggerDocument = {
                 $ref: '#/components/schemas/BodyAssetToTrade',
               },
               examples: {
-                Product: {
+                Asset: {
                   summary: 'Asset to sell',
                   value: {
                     customerId: 1,
@@ -157,9 +201,127 @@ const swaggerDocument = {
         },
       },
     },
+    '/account': {
+      get: {
+        summary: 'Get all customers',
+        description: 'Method used in this route to get all customers registered on database',
+        tags: ['account'],
+        operationId: 'getAllCustomers',
+        responses: {
+          200: {
+            description: 'OK',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array of objects',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/account/{id}': {
+      get: {
+        summary: 'Get a costumer',
+        description: 'Method used in this route to get an customer',
+        tags: ['account'],
+        operationId: 'getCustomerById',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            description: 'customer id',
+            required: true,
+          },
+        ],
+        responses: {
+          404: {
+            description: 'Sorry, this customer still doesn\t have an account with us',
+          },
+          200: {
+            description: 'OK',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/account/statement/{id}': {
+      get: {
+        summary: 'Get an account statement by costumer',
+        description: 'Method used in this route to get an account statement',
+        tags: ['account'],
+        operationId: 'getAccountStatementByCustomerId',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            description: 'customer id',
+            required: true,
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array of objects',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/account/assets/{id}': {
+      get: {
+        summary: 'Get assets by costumer',
+        description: 'Method used in this route to get all the assets that belong to a customer',
+        tags: ['account'],
+        operationId: 'getAssetByCustomerId',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            description: 'customer id',
+            required: true,
+          },
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'array of objects',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   components: {
     schema: {
+      BodyLogin: {
+        type: 'object',
+        properties: {
+          fullName: {
+            type: 'string',
+          },
+          password: {
+            type: 'string',
+          },
+        },
+      },
       BodyAssetToTrade: {
         type: 'object',
         properties: {
