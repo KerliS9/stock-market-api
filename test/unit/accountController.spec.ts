@@ -2,7 +2,8 @@ import { getMockReq, getMockRes } from '@jest-mock/express';
 import AccountService from '../../src/services/accountService';
 import AccountController from '../../src/controllers/accountController';
 import { investmentsByCustomerId, customerById, messageCustomerById,
-  depositByCustomerId, messageInputValue, withdrawByCustomerId, messageOutputValue
+  depositByCustomerId, messageInputValue, withdrawByCustomerId, messageOutputValue,
+  customerByIdAccountStatement,
 } from '../__mocks__/account';
 
 describe('Check Account Controller GET: getAssetByCustomerId', () => {
@@ -48,6 +49,22 @@ describe('Check Account Controller GET: getCustomerById', () => {
     await AccountController.getCustomerById(req, res);
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining(messageCustomerById[0]));
+  });
+});
+
+describe('Check Account Controller GET: getAccountStatementByCustomerId', () => {
+  it('should return an array of objects', async () => {
+    const req = getMockReq({
+      params: {
+        id: '1'
+      } });
+
+    const { res } = getMockRes();
+
+    jest.spyOn(AccountService, 'getAccountStatementByCustomerId').mockResolvedValue(customerByIdAccountStatement);
+    await AccountController.getAccountStatementByCustomerId(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(expect.arrayContaining(customerByIdAccountStatement));
   });
 });
 
