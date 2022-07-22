@@ -31,11 +31,11 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 
   2. Entre na pasta do repositório que você acabou de clonar:
 
-    - `cd stock-market-api`
+  - `cd stock-market-api`
 
   3. Instale as dependências
 
-    - `npm install`
+  - `npm install`
 
   4. Em seu terminal digite
 
