@@ -2,8 +2,8 @@ import AssetModel from '../../src/models/assetModel';
 import AssetService from '../../src/services/assetService';
 import { assets, assetById } from '../__mocks__/assets';
 
-describe('Check Asset Service GET: getAllAssets from database', () => {    
-    it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
+describe('Check Asset Service GET: getAllAssets from database', () => {
+  it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
     jest.spyOn(AssetModel, 'getAllAssets').mockResolvedValue(assets);
     const response = await AssetService.getAllAssets();
     expect(response).toEqual(expect.arrayContaining(assets));
@@ -32,5 +32,5 @@ describe('Check Asset Service GET: getAssetById from database', () => {
     const [response] = await AssetService.getAssetById(1);
     expect(response).toHaveProperty('message');
     expect(response.message).toBe('Sorry, this assetId does not exits in our database');
-  })
+  });
 });

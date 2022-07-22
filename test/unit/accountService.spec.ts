@@ -4,11 +4,11 @@ import { customers, accountBalance, customerById,
   customerByIdAccountStatement,
   depositByCustomerId, depositByCustomerIdWithoutValue,
   withdrawByCustomerId, withdrawByCustomerIdWithoutValue,
-  investmentsByCustomerId, accountStatementOfAllInvestments
+  investmentsByCustomerId, accountStatementOfAllInvestments,
 } from '../__mocks__/account';
 
-describe('Check Account Service GET: getAllCustomers from database', () => {    
-    it('should return an array of objects that contains the keys customerId, fullName, investorProfile', async () => {
+describe('Check Account Service GET: getAllCustomers from database', () => {
+  it('should return an array of objects that contains the keys customerId, fullName, investorProfile', async () => {
     jest.spyOn(AccountModel, 'getAllCustomers').mockResolvedValue(customers);
     const response = await AccountService.getAllCustomers();
     expect(response).toEqual(expect.arrayContaining(customers));
@@ -18,7 +18,7 @@ describe('Check Account Service GET: getAllCustomers from database', () => {
   });
 });
 
-describe('Check Account Service GET: getAssetByCustomerId from database', () => {    
+describe('Check Account Service GET: getAssetByCustomerId from database', () => {
   it(`should return an array of objects that contains the keys customerId, 
   assetId, asset, amountAsset, unitValue, totalInvestments, sector`, async () => {
     jest.spyOn(AccountModel, 'deleteAssetsAtCustody').mockResolvedValue(undefined);
@@ -54,10 +54,10 @@ describe('Check Account Service GET: getCustomerById from database', () => {
     const [response] = await AccountService.getCustomerById(10);
     expect(response).toHaveProperty('message');
     expect(response.message).toBe('Sorry, this customer still doesn\t have an account with us');
-  })
+  });
 });
 
-describe('Check Account Service GET: getAccountStatementByCustomerId from database', () => {    
+describe('Check Account Service GET: getAccountStatementByCustomerId from database', () => {
   it('should return an array of objects that contains the keys date, accountInput, accountOutput', async () => {
     jest.spyOn(AccountModel, 'getAccountStatementByCustomerId').mockResolvedValue(customerByIdAccountStatement);
     const response = await AccountService.getAccountStatementByCustomerId(1);
@@ -68,7 +68,7 @@ describe('Check Account Service GET: getAccountStatementByCustomerId from databa
   });
 });
 
-describe('Check Account Service POST: insertDepositAtAccountByCustomerId at database', () => {    
+describe('Check Account Service POST: insertDepositAtAccountByCustomerId at database', () => {
   it('should return an objects that contains the keys customerId, inputValue', async () => {
     jest.spyOn(AccountModel, 'insertDepositAtAccountByCustomerId').mockResolvedValue(undefined);
     const response = await AccountService.insertDepositAtAccountByCustomerId(depositByCustomerId);
@@ -81,10 +81,10 @@ describe('Check Account Service POST: insertDepositAtAccountByCustomerId at data
     const response = await AccountService.insertDepositAtAccountByCustomerId(depositByCustomerIdWithoutValue);
     expect(response).toHaveProperty('message');
     expect(response.message).toBe('Sorry, value to pay into an account need to be greater than 0');
-  })
+  });
 });
 
-describe('Check Account Service POST: insertWithdrawAtAccountByCustomerId at database', () => {    
+describe('Check Account Service POST: insertWithdrawAtAccountByCustomerId at database', () => {
   it('should return an objects that contains the keys customerId, outputValue', async () => {
     jest.spyOn(AccountModel, 'insertWithdrawAtAccountByCustomerId').mockResolvedValue(undefined);
     jest.spyOn(AccountModel, 'getCustomerAccountBalance').mockResolvedValue(accountBalance);

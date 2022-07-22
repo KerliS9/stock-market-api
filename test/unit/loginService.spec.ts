@@ -2,7 +2,7 @@ import LoginModel from '../../src/models/loginModel';
 import LoginService from '../../src/services/loginService';
 import { customer, login, wrongLogin } from '../__mocks__/login';
 
-describe('Check Login Service POST: getCustomerLogin from database', () => {    
+describe('Check Login Service POST: getCustomerLogin from database', () => {
   it('should return an object that contains the keys token', async () => {
     jest.spyOn(LoginModel, 'getCustomerLogin').mockResolvedValue(customer);
     const response = await LoginService.getCustomerLogin(login);

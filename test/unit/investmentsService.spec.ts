@@ -7,7 +7,7 @@ import { buyAsset, sellAsset, assetById, investmentsByCustomerId, customerById }
 
 describe(`Check Investments Service POST: check amount of asset available on broker, buy asset, 
 update amount of asset on broker and insert withdraw to account statement`, () => {
-    it('should return an array of objects that contains the keys customerId, assetId, quantity, totalPurchase', async () => {
+  it('should return an array of objects that contains the keys customerId, assetId, quantity, totalPurchase', async () => {
     jest.spyOn(AssetModel, 'getAssetById').mockResolvedValue(assetById);
     jest.spyOn(InvestmentsModel, 'buyAsset').mockResolvedValue(undefined);
     jest.spyOn(InvestmentsModel, 'updateAmountAssetAtBrokerageFirm').mockResolvedValue(undefined);
