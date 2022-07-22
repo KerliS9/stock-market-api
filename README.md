@@ -8,8 +8,7 @@ Abaixo contêm os desafios encontrados para realização do projeto, os motivos 
 Este projeto tem por objetivo simular as operações que são possíveis de serem realizadas por um cliente cadastrado numa corretora.
 
 <div style="display: inline_block">
-  <img align="center" alt="planningProject" height="30" width="40" src="./planning.png"/>
-  ![Isso é uma imagem](./planning.png)
+  <img alt="planningProject" height="100" width="400" src="./planning.png"/>
 </div>
 
 ## Principais desafios encontrados
