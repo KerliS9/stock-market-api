@@ -37,6 +37,20 @@ export const accountBalance = [
   },
 ];
 
+export const messageCustomerById = [
+  {
+    message: 'Sorry, this customer still doesn\t have an account with us',
+  },
+];
+
+export const messageInputValue = {
+  message: 'Sorry, value to pay into an account need to be greater than 0',
+}
+
+export const messageOutputValue = {
+  message: 'Sorry, value to withdraw from account need to be greater than 0',
+}
+
 export const customers = [
   {
     customerId: 1,
