@@ -6,7 +6,7 @@
   "scripts": {
     "test:mocha": "mocha -r ts-node/register test/unit/**/*.test.ts --exit",
     "test": "jest --verbose",
-    "test:coverage": "nyc nyc npm run test",
+    "test:coverage": "nyc npm run test src/",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "dev": "nodemon --exec npx ts-node src/server.ts",

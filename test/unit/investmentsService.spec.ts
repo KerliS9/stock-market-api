@@ -1,9 +1,9 @@
-import AssetModel from '../../../src/models/assetModel';
-import AccountModel from '../../../src/models/accountModel';
-import InvestmentsModel from '../../../src/models/investmentsModel';
-import AccountService from '../../../src/services/accountService';
-import InvestmentsService from '../../../src/services/investmentsService';
-import { buyAsset, sellAsset, assetById, investmentsByCustomerId } from '../../__mocks__/investments';
+import AssetModel from '../../src/models/assetModel';
+import AccountModel from '../../src/models/accountModel';
+import InvestmentsModel from '../../src/models/investmentsModel';
+import AccountService from '../../src/services/accountService';
+import InvestmentsService from '../../src/services/investmentsService';
+import { buyAsset, sellAsset, assetById, investmentsByCustomerId } from '../__mocks__/investments';
 
 describe(`Check Investments Service POST: check amount of asset available on broker, buy asset, 
 update amount of asset on broker and insert withdraw to account statement`, () => {

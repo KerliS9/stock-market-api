@@ -1,6 +1,6 @@
-import AssetModel from '../../../src/models/assetModel';
-import AssetService from '../../../src/services/assetService';
-import { assets, assetById } from '../../__mocks__/assets';
+import AssetModel from '../../src/models/assetModel';
+import AssetService from '../../src/services/assetService';
+import { assets, assetById } from '../__mocks__/assets';
 
 describe('Check Asset Service GET: getAllAssets from database', () => {    
     it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {

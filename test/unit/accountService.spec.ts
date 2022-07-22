@@ -1,11 +1,11 @@
-import AccountModel from '../../../src/models/accountModel';
-import AccountService from '../../../src/services/accountService';
+import AccountModel from '../../src/models/accountModel';
+import AccountService from '../../src/services/accountService';
 import { customers, accountBalance, customerById,
   customerByIdAccountStatement,
   depositByCustomerId, depositByCustomerIdWithoutValue,
   withdrawByCustomerId, withdrawByCustomerIdWithoutValue,
   investmentsByCustomerId, accountStatementOfAllInvestments
-} from '../../__mocks__/account';
+} from '../__mocks__/account';
 
 describe('Check Account Service GET: getAllCustomers from database', () => {    
     it('should return an array of objects that contains the keys customerId, fullName, investorProfile', async () => {

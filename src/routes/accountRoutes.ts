@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import AccountController from '../controllers/accountController';
 import auth from '../middleware/authMiddleware';
-// import { inputValue, outputValue } from '../middleware/transferValidation';
 
 const AccountRoutes = Router();
 
