@@ -19,23 +19,6 @@ describe('Check Investments Controller POST: buy asset for customer that request
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining(buyAsset));
   });
-
-  /* it('should return an object', async () => {
-    const req = getMockReq({
-      body: {
-        customerId: 1,
-        assetId: 2,
-        quantity: 5,
-      } });
-
-    const { res } = getMockRes();
-
-    await InvestmentsController.buyAsset(req, res);
-    expect(res.status).toHaveBeenCalledWith(409);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-      message: 'This quantity is not available at this broker for this asset'
-    }));
-  }); */
 });
 
 describe('Check Investments Controller POST: buy asset for customer that requested', () => {
