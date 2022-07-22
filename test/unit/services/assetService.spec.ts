@@ -30,8 +30,7 @@ describe('Check Asset Service GET: getAssetById from database', () => {
   it('when don\t exists the assetId on database', async () => {
     jest.spyOn(AssetModel, 'getAssetById').mockResolvedValue([]);
     const [response] = await AssetService.getAssetById(1);
-    // console.log(response);
     expect(response).toHaveProperty('message');
-    expect(response.message).toBe('Sorry, this assetId doesn\t exits in our database');
+    expect(response.message).toBe('Sorry, this assetId does not exits in our database');
   })
 });

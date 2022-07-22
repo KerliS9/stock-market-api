@@ -28,8 +28,8 @@ export default {
   sellAsset: async (asset: ITradeAsset): Promise<IAssetSold | IError> => {
     const { customerId, assetId, quantity } = asset;
     const assetsOnCustody = await AccountService.getAssetByCustomerId(customerId);
-    const [assetToSell] = assetsOnCustody.filter((a) => a.assetId === assetId);
-    if (assetToSell.amountAsset < quantity) return { message: 'Sorry, you do not have this amount of this asset to sell' };
+    const assetToSell = assetsOnCustody.filter((a) => a.assetId === assetId);
+    if (assetToSell[0].amountAsset < quantity) return { message: 'Sorry, you do not have this amount of this asset to sell' };
     await InvestmentsModel.sellAsset(asset);
     const assetOnBroker = await AssetModel.getAssetById(assetId);
     const { amountAsset, price } = assetOnBroker[0];
