@@ -3,8 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import AccountService from '../services/accountService';
 
 export default {
-  getAll: async (_req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.getAll();
+  getAllCustomers: async (_req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.getAllCustomers();
     return res.status(StatusCodes.OK).json(result);
   },
 
@@ -15,7 +15,10 @@ export default {
 
   getCustomerById: async (req: Request, res: Response): Promise<Response> => {
     const result = await AccountService.getCustomerById(+req.params.id);
-    return res.status(StatusCodes.OK).json(result);
+    if (result[0].message) {
+      return res.status(StatusCodes.NOT_FOUND).json(result[0]);
+    }
+    return res.status(StatusCodes.OK).json(result[0]);
   },
 
   getAccountStatementByCustomerId: async (req: Request, res: Response): Promise<Response> => {
@@ -23,16 +26,16 @@ export default {
     return res.status(StatusCodes.OK).json(result);
   },
 
-  setValueOnAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.setValueOnAccountByCustomerId(req.body);
+  insertDepositAtAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.insertDepositAtAccountByCustomerId(req.body);
     if (result.message) {
       return res.status(StatusCodes.CONFLICT).json(result);
     }
     return res.status(StatusCodes.CREATED).json(result);
   },
 
-  withdrawValueFromAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
-    const result = await AccountService.withdrawValueFromAccountByCustomerId(req.body);
+  insertWithdrawAtAccountByCustomerId: async (req: Request, res: Response): Promise<Response> => {
+    const result = await AccountService.insertWithdrawAtAccountByCustomerId(req.body);
     if (result.message) {
       return res.status(StatusCodes.CONFLICT).json(result);
     }

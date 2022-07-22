@@ -1,17 +1,16 @@
 import { Router } from 'express';
 import AccountController from '../controllers/accountController';
 import auth from '../middleware/authMiddleware';
-// import { inputValue, outputValue } from '../middleware/transferValidation';
 
 const AccountRoutes = Router();
 
 AccountRoutes.get('/account/assets/:id', AccountController.getAssetByCustomerId);
 AccountRoutes.get('/account/statement/:id', AccountController.getAccountStatementByCustomerId);
 AccountRoutes.get('/account/:id', AccountController.getCustomerById);
-AccountRoutes.get('/account', AccountController.getAll);
+AccountRoutes.get('/account', AccountController.getAllCustomers);
 
 AccountRoutes.use(auth.authentication);
-AccountRoutes.post('/account/input', AccountController.setValueOnAccountByCustomerId);
-AccountRoutes.post('/account/output', AccountController.withdrawValueFromAccountByCustomerId);
+AccountRoutes.post('/account/input', AccountController.insertDepositAtAccountByCustomerId);
+AccountRoutes.post('/account/output', AccountController.insertWithdrawAtAccountByCustomerId);
 
 export default AccountRoutes;

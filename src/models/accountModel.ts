@@ -1,25 +1,29 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { ResultSetHeader } from 'mysql2';
 import {
   ICustomers, IAccountStatementByCustomer,
   IAccountInput, IAccountOutput,
   IAssetByCustomerId, IAssetToCustody,
+  IAccountBalance,
+  IAccountByCustomer,
+  IAccountStatementOfAllInvestments,
 } from '../interfaces/account';
 
 import Connection from './connection';
 
 export default {
-  getAll: async (): Promise<ICustomers[]> => {
+  getAllCustomers: async (): Promise<ICustomers[]> => {
     const query = 'SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile FROM Customer;';
     const [result] = await Connection.execute(query);
     return result as ICustomers[];
   },
 
-  deleteAssetsOnCustody: async (customerId: number) => {
+  deleteAssetsAtCustody: async (customerId: number) => {
     const query = 'DELETE FROM Customer_Custody WHERE customer_id = ?;';
     await Connection.execute(query, [customerId]);
   },
 
-  getAllInvestmentsByCustomerId: async (customerId: number) => {
+  getAllInvestmentsByCustomerId:
+  async (customerId: number): Promise<IAccountStatementOfAllInvestments[]> => {
     const query = `SELECT CI.customer_id AS customerId, CI.asset_id AS assetId, CO.sector,
       SUM(CI.amount_asset_take) AS take,
       SUM(CI.amount_asset_sell) AS sold
@@ -28,8 +32,8 @@ export default {
       ON CI.asset_id = CO.asset_id
       WHERE CI.customer_id = ?
       GROUP BY CI.customer_id, CI.asset_id, CO.sector;`;
-    const [result] = await Connection.execute<RowDataPacket[]>(query, [customerId]);
-    return result;
+    const [result] = await Connection.execute(query, [customerId]);
+    return result as IAccountStatementOfAllInvestments[];
   },
 
   setAssetsToCustody: async (custody: IAssetToCustody) => {
@@ -49,8 +53,8 @@ export default {
     const [result] = await Connection.execute(query, [id]);
     return result as IAssetByCustomerId[];
   },
-  // saldo
-  getCustomerAccountBalance: async (id: number) => {
+  // compara entradas e saídas
+  getCustomerAccountBalance: async (id: number): Promise<IAccountBalance[]> => {
     const query = `SELECT SUM(X.inputs - X.outputs) AS accountBalance
     FROM (SELECT
     AT.customer_id,
@@ -66,15 +70,20 @@ export default {
     FROM Account_Statement AS AT
     GROUP BY AT.customer_id) X
     WHERE customer_id = ?;`;
-    const [result] = await Connection.execute<RowDataPacket[]>(query, [id]);
-    return result;
+    const [result] = await Connection.execute(query, [id]);
+    return result as IAccountBalance[];
   },
-  // saldo
-  getCustomerById: async (id: number) => {
-    const query = `SELECT id, full_name, investor_profile, account_balance
-      FROM Customer WHERE id = ?;`;
-    const [result] = await Connection.execute<RowDataPacket[]>(query, [id]);
-    return result;
+  // atualiza saldo
+  updateAccountBalanceByCustomerId: async (id: number, accountBalance: number) => {
+    const query = 'UPDATE Customer SET account_balance = ? WHERE id = ?';
+    await Connection.execute<ResultSetHeader>(query, [accountBalance, id]);
+  },
+
+  getCustomerById: async (id: number): Promise<IAccountByCustomer[]> => {
+    const query = `SELECT id AS customerId, full_name AS fullName, investor_profile AS investorProfile,
+    account_balance AS accountBalance FROM Customer WHERE id = ?;`;
+    const [result] = await Connection.execute(query, [id]);
+    return result as IAccountByCustomer[];
   },
   // extrato
   getAccountStatementByCustomerId: async (id: number): Promise<IAccountStatementByCustomer[]> => {
@@ -87,18 +96,16 @@ export default {
     return result as IAccountStatementByCustomer[];
   },
   // deposito
-  setValueOnAccountByCustomerId: async (dataInput: IAccountInput): Promise<ResultSetHeader> => {
+  insertDepositAtAccountByCustomerId:
+  async (dataInput: IAccountInput) => {
     const { customerId, inputValue } = dataInput;
     const query = 'INSERT INTO Account_Statement (customer_id, account_input) VALUE (?, ?);';
-    const [result] = await Connection.execute<ResultSetHeader>(query, [customerId, inputValue]);
-    return result;
+    await Connection.execute<ResultSetHeader>(query, [customerId, inputValue]);
   },
   // saque
-  withdrawValueFromAccountByCustomerId: async (dataOutput: IAccountOutput):
-  Promise<ResultSetHeader> => {
+  insertWithdrawAtAccountByCustomerId: async (dataOutput: IAccountOutput) => {
     const { customerId, outputValue } = dataOutput;
     const query = 'INSERT INTO Account_Statement (customer_id, account_output) VALUE (?, ?);';
-    const [result] = await Connection.execute<ResultSetHeader>(query, [customerId, outputValue]);
-    return result;
+    await Connection.execute<ResultSetHeader>(query, [customerId, outputValue]);
   },
 };

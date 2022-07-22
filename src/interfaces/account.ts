@@ -9,6 +9,7 @@ export interface IAccountByCustomer {
   fullName: string;
   investorProfile: string;
   accountBalance: number;
+  message?: string;
 }
 
 export interface IAccountStatementByCustomer {
@@ -44,4 +45,16 @@ export interface IAssetToCustody {
   assetId: number;
   amount: number;
   sector: string;
+}
+
+export interface IAccountBalance {
+  accountBalance: number;
+}
+
+export interface IAccountStatementOfAllInvestments {
+    customerId: number;
+    assetId: number;
+    sector: string;
+    take: number;
+    sold: number;
 }

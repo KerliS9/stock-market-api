@@ -1,2 +1,12 @@
+# Dependency directories
 /node_modules
+
+# dotenv environment variables file
 .env
+
+# Optional eslint cache
+.eslintcache
+
+# Coverage directory used by tools like istanbul
+coverage
+.nyc*

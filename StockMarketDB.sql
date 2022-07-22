@@ -68,11 +68,11 @@ SET SQL_SAFE_UPDATES = 0;
 INSERT INTO
   StockMarketDB.Customer (full_name, password, investor_profile, account_balance)
 VALUES
-  ("Kerli Schroeder", "214563", "Arrojado", 5000),
-  ("Mauricio Gerahrdt", "258796", "Arrojado", 4500),
-  ("Joao Silva", "235461", "Arrojado", 5500),
-  ("Marco Antonio", "879546", "Moderado", 3500),
-  ("Maria Julia", "564897", "Conservador", 7500);
+  ("Kerli Schroeder", "214563", "Arrojado", 0),
+  ("Mauricio Gerahrdt", "258796", "Arrojado", 0),
+  ("Joao Silva", "235461", "Arrojado", 0),
+  ("Marco Antonio", "879546", "Moderado", 0),
+  ("Maria Julia", "564897", "Conservador", 0);
   
 INSERT INTO
   StockMarketDB.Account_Statement (customer_id, account_input, account_output, date)
@@ -83,8 +83,10 @@ VALUES
   (2, 1000, 0, NOW()),
   (2, 0, 100, NOW()),
   (2, 0, 200, NOW()),
-  (3, 200, 500, NOW()),
-  (3, 200, 0, NOW());
+  (3, 200, 10, NOW()),
+  (3, 200, 0, NOW()),
+  (4, 200, 0, NOW()),
+  (5, 0, 0, NOW());
 
 INSERT INTO
   StockMarketDB.Market_Assets (asset, price)
