@@ -20,7 +20,10 @@ const swaggerDocument = {
           content: {
             'application/json': {
               schema: {
-                $ref: '#/components/schemas/BodyLogin',
+                type: 'object',
+                items: {
+                  $ref: '#/components/schemas/BodyLogin',
+                },
               },
               examples: {
                 Login: {
@@ -115,7 +118,10 @@ const swaggerDocument = {
           content: {
             'application/json': {
               schema: {
-                $ref: '#/components/schemas/BodyAssetToTrade',
+                type: 'object',
+                items: {
+                  $ref: '#/components/schemas/BodyAssetToTrade',
+                },
               },
               examples: {
                 Asset: {
@@ -145,7 +151,10 @@ const swaggerDocument = {
             content: {
               'application/json': {
                 schema: {
-                  $ref: '#/components/schemas/ResponseOfAssetPurchased',
+                  type: 'object',
+                  items: {
+                    $ref: '#/components/schemas/ResponseOfAssetPurchased',
+                  },
                 },
               },
             },
@@ -163,7 +172,10 @@ const swaggerDocument = {
           content: {
             'application/json': {
               schema: {
-                $ref: '#/components/schemas/BodyAssetToTrade',
+                type: 'object',
+                items: {
+                  $ref: '#/components/schemas/BodyAssetToTrade',
+                },
               },
               examples: {
                 Asset: {
@@ -193,7 +205,10 @@ const swaggerDocument = {
             content: {
               'application/json': {
                 schema: {
-                  $ref: '#/components/schemas/ResponseOfAssetSold',
+                  type: 'object',
+                  items: {
+                    $ref: '#/components/schemas/ResponseOfAssetSold',
+                  },
                 },
               },
             },
@@ -308,6 +323,97 @@ const swaggerDocument = {
         },
       },
     },
+    '/account/input': {
+      post: {
+        summary: 'Deposit at account',
+        description: 'Method used in this route to deposit at account customer',
+        tags: ['account'],
+        operationId: 'insertDepositAtAccountByCustomerId',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                items: {
+                  $ref: '#/components/schemas/BodyDeposit',
+                },
+              },
+              examples: {
+                Deposit: {
+                  summary: 'Deposit at account',
+                  value: {
+                    customerId: 1,
+                    inputValue: 100,
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          409: {
+            description: 'Sorry, value to pay into an account need to be greater than 0',
+          },
+          201: {
+            description: 'Created',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  items: {
+                    $ref: '#/components/schemas/BodyDeposit',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/account/output': {
+      post: {
+        summary: 'Withdraw from account',
+        description: 'Method used in this route to withdraw a value',
+        tags: ['account'],
+        operationId: 'insertWithdrawAtAccountByCustomerId',
+        requestBody: {
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/BodyWithdraw',
+              },
+              examples: {
+                Withdraw: {
+                  summary: 'Withdraw from account',
+                  value: {
+                    customerId: 1,
+                    outputValue: 100,
+                  },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          409: {
+            description: 'Sorry, value to withdraw from account need to be greater than 0',
+          },
+          201: {
+            description: 'Created',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  items: {
+                    $ref: '#/components/schemas/BodyWithdraw',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   components: {
     schema: {
@@ -368,6 +474,28 @@ const swaggerDocument = {
           totalSale: {
             type: 'integer',
           },
+        },
+      },
+    },
+    BodyDeposit: {
+      type: 'object',
+      properties: {
+        customerId: {
+          type: 'integer',
+        },
+        inputValue: {
+          type: 'integer',
+        },
+      },
+    },
+    BodyWithdraw: {
+      type: 'object',
+      properties: {
+        customerId: {
+          type: 'integer',
+        },
+        outputValue: {
+          type: 'integer',
         },
       },
     },
