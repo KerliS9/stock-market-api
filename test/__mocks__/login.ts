@@ -17,3 +17,11 @@ export const wrongLogin = {
   fullName: 'KerliSchroeder',
   password: '1111111',
 };
+
+export const loginError = {
+  message: 'Full name and/or password is invalid'
+}
+
+export const token = {
+	token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIwIjpbeyJpZCI6MSwiZnVsbE5hbWUiOiJLZXJsaSBTY2hyb2VkZXIiLCJpbnZlc3RvclByb2ZpbGUiOiJBcnJvamFkbyJ9XSwiaWF0IjoxNjU4NTEyOTMyLCJleHAiOjE2NTg1MTM4MzJ9.ofl7WdrL6F-AtOjk7T3hXdPtECJlPcOM8eo_CHyqeXM'
+}
