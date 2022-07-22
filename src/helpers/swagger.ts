@@ -499,6 +499,13 @@ const swaggerDocument = {
         },
       },
     },
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
   },
 };
 
