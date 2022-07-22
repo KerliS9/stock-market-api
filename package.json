@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:mocha": "mocha -r ts-node/register test/unit/**/*.test.ts --exit",
     "test": "jest --verbose",
-    "test:coverage": "nyc npm run test src/",
+    "test:cov": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "dev": "nodemon --exec npx ts-node src/server.ts",
