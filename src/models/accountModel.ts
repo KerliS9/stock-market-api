@@ -1,10 +1,11 @@
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import { ResultSetHeader } from 'mysql2';
 import {
   ICustomers, IAccountStatementByCustomer,
   IAccountInput, IAccountOutput,
   IAssetByCustomerId, IAssetToCustody,
   IAccountBalance,
   IAccountByCustomer,
+  IAccountStatementOfAllInvestments,
 } from '../interfaces/account';
 
 import Connection from './connection';
@@ -21,7 +22,8 @@ export default {
     await Connection.execute(query, [customerId]);
   },
 
-  getAllInvestmentsByCustomerId: async (customerId: number) => {
+  getAllInvestmentsByCustomerId:
+  async (customerId: number): Promise<IAccountStatementOfAllInvestments[]> => {
     const query = `SELECT CI.customer_id AS customerId, CI.asset_id AS assetId, CO.sector,
       SUM(CI.amount_asset_take) AS take,
       SUM(CI.amount_asset_sell) AS sold
@@ -30,8 +32,8 @@ export default {
       ON CI.asset_id = CO.asset_id
       WHERE CI.customer_id = ?
       GROUP BY CI.customer_id, CI.asset_id, CO.sector;`;
-    const [result] = await Connection.execute<RowDataPacket[]>(query, [customerId]);
-    return result;
+    const [result] = await Connection.execute(query, [customerId]);
+    return result as IAccountStatementOfAllInvestments[];
   },
 
   setAssetsToCustody: async (custody: IAssetToCustody) => {

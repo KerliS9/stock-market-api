@@ -2,7 +2,7 @@ import AssetModel from '../../../src/models/assetModel';
 import AssetService from '../../../src/services/assetService';
 import { assets, assetById } from '../../__mocks__/assets';
 
-describe('Check Asset Service GET: getAllAssets assets from database', () => {    
+describe('Check Asset Service GET: getAllAssets from database', () => {    
     it('should return an array of objects that contains the keys id, asset, price, sector, company', async () => {
     jest.spyOn(AssetModel, 'getAllAssets').mockResolvedValue(assets);
     const response = await AssetService.getAllAssets();
@@ -27,11 +27,11 @@ describe('Check Asset Service GET: getAssetById from database', () => {
     expect(response).toHaveProperty('amountAsset');
   });
 
-  it('when don\t exists this assetId on database', async () => {
+  it('when don\t exists the assetId on database', async () => {
     jest.spyOn(AssetModel, 'getAssetById').mockResolvedValue([]);
     const [response] = await AssetService.getAssetById(1);
     // console.log(response);
     expect(response).toHaveProperty('message');
-    expect(response.message).toBe('Sorry, this assetId does not exits in our database');
+    expect(response.message).toBe('Sorry, this assetId doesn\t exits in our database');
   })
 });

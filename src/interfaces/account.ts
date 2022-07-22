@@ -50,3 +50,11 @@ export interface IAssetToCustody {
 export interface IAccountBalance {
   accountBalance: number;
 }
+
+export interface IAccountStatementOfAllInvestments {
+    customerId: number;
+    assetId: number;
+    sector: string;
+    take: number;
+    sold: number;
+}
