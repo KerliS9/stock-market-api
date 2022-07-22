@@ -1,41 +1,49 @@
+## Bem Vindo a este repositório
+
+Abaixo contêm os desafios encontrados para realização do projeto, os motivos de certas escolhas, como você pode clonar o projeto, bem como as tecnologias que foram usadas.
+
+
 ## Contexto geral
 
 Este projeto tem por objetivo simular as operações que são possíveis de serem realizadas por um cliente cadastrado numa corretora.
 
-# Principais desafios encontrados
- - Como montar as tabelas, de forma que ficassem enxutas e tivessem um bom relacionamento, 1:N, N:N;
- - Como realizar a validação, pela biblioteca do Joi ou dentro das regras de negócio (camada service);
- - Preparar o ambiente para os testes;
- - Dificuldade em simular as funções com o framework Sinon;
- - Decisão o framework Sinon/Mocha/Chai para o Jest;
- - Necessidade de rever e refatorar alguns códigos para viabilizar os testes;
- - Dificuldade em ler os erros de tipagem que ocorriam nos testes.
+<div style="display: inline_block">
+  <img alt="planningProject" height="250" width="400" src="./planning.png"/>
+</div>
 
-# Porque das escolhas tomadas
- - Optei por criar as queries sem usar ORM para treinar a lógica de como os relacionamentos acontecem dentro do mysql;
- - Escolhi typescript pois tem o benefício da tipagem dos retornos e acelerando a identificação dos erros;
- - Escolhi usar autenticação por jsonWebToken, pois já conhecia as tipagens necessárias para os parâmetros e retornos;
- - Optei por iniciar os testes com Mocha/Chai/Sinon pois era o framework que tive contato mais recente;
- - Alterei a realização dos testes para usar o framework Jest, pois tive muita dificuldade para entender os erros retornados;
+## Principais desafios encontrados
+ - Montar as tabelas(1:N ou N:N), de forma que ficassem enxutas e tivessem um bom relacionamento;
+ - Preparar o ambiente para os testes, pois era a primeira vez que fiz a instalação inicial em uma aplicação com testes;
+ - Simular as funções com o framework Sinon, devido a dificuldade de interpretar os erros de tipagem que ocorriam nos testes;
+ - Decisão de sair do framework Sinon/Mocha/Chai para o framework Jest.
 
-# Para execução do projeto
-  1. Clone o repositório
+## Porque das escolhas tomadas
+ - Optei por criar as 'queries' sem usar ORM(Object-Relational Mapping) para treinar a lógica de como os relacionamentos acontecem dentro do mysql;
+ - Escolhi typescript pois tem o benefício da tipagem dos retornos e assim acelera a identificação dos erros;
+ - Escolhi usar autenticação por JsonWebToken, pois já conhecia as tipagens necessárias para os parâmetros e retornos;
+ - Optei por iniciar os testes com Mocha/Chai/Sinon pois era o framework que da a opção de testas as chaves de um objeto, agrupando em uma linha de código;
+ - Alterei a realização dos testes para usar o framework Jest, pois tive muita dificuldade para entender os erros retornados com o Sinon;
 
-  - `git clone https://github.com/tryber/sd-018-a-project-trybesmith.git`.
-  - Entre na pasta do repositório que você acabou de clonar:
+## Para executar o projeto
+  1. Clone o repositório, com o comando abaixo, no terminal:
+
+  - `git clone git@github.com:KerliS9/stock-market-api.git`
+
+  2. Entre na pasta do repositório que você acabou de clonar:
+
     - `cd stock-market-api`
 
-  2. Instale as dependências
+  3. Instale as dependências
 
-  - `npm install`
+    - `npm install`
 
-  3. Em seu terminal digite
+  4. Em seu terminal digite
 
   - `npm run dev`
 
-# Linguagens e ferramentas usadas
+## Linguagens e ferramentas usadas
 
-1 - Para construção do projeto:
+Para construção do projeto:
  - TypeScript;
  - Express;
  - Joi
@@ -47,6 +55,6 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
  - dotenv
  - http-status-codes
 
-2 - Para os testes unitários:
+Para os testes unitários:
  - ts-jest
  - jest-express
