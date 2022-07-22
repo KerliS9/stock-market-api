@@ -22,6 +22,15 @@ export const assetById = [
   }
 ]
 
+export const customerById = [
+  {
+    customerId: 4,
+    fullName: "Marco Antonio",
+    investorProfile: "Moderado",
+    accountBalance: 200.00
+  }
+]
+
 export const investmentsByCustomerId = [
   {
     customerId: 1,

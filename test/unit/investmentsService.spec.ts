@@ -3,7 +3,7 @@ import AccountModel from '../../src/models/accountModel';
 import InvestmentsModel from '../../src/models/investmentsModel';
 import AccountService from '../../src/services/accountService';
 import InvestmentsService from '../../src/services/investmentsService';
-import { buyAsset, sellAsset, assetById, investmentsByCustomerId } from '../__mocks__/investments';
+import { buyAsset, sellAsset, assetById, investmentsByCustomerId, customerById } from '../__mocks__/investments';
 
 describe(`Check Investments Service POST: check amount of asset available on broker, buy asset, 
 update amount of asset on broker and insert withdraw to account statement`, () => {
@@ -18,6 +18,13 @@ update amount of asset on broker and insert withdraw to account statement`, () =
     expect(response).toHaveProperty('assetId');
     expect(response).toHaveProperty('quantity');
     expect(response).toHaveProperty('totalPurchase');
+  });
+
+  it('when profile risk does nots match to daring profile, should return an object that contains the keys message', async () => {
+    jest.spyOn(AccountModel, 'getCustomerById').mockResolvedValue(customerById);
+    const response = await InvestmentsService.buyAsset(buyAsset);
+    expect(response).toHaveProperty('message');
+    expect(response.message).toBe('Sorry, this operation is not available to your investor profile');
   });
 });
 

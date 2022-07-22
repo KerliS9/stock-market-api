@@ -8,6 +8,12 @@ import AccountService from './accountService';
 export default {
   buyAsset: async (asset: ITradeAsset): Promise<IAssetPurchased | IError> => {
     const { customerId, assetId, quantity } = asset;
+    const profileRisk = await AccountModel.getCustomerById(customerId);
+    if (profileRisk[0].investorProfile !== 'Arrojado') {
+      return {
+        message: 'Sorry, this operation is not available to your investor profile',
+      };
+    }
     const assetOnBroker = await AssetModel.getAssetById(assetId);
     const { amountAsset, price } = assetOnBroker[0];
     const newQuantity = amountAsset - quantity;
