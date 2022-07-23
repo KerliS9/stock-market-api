@@ -26,10 +26,10 @@ jobs:
       - uses: actions/setup-node@v1.4.4
   
   jest:
-  runs-on: ubuntu-18.04
-  steps:
-    - uses: actions/checkout@v1
-    - name: Instala dependências
-      run: npm install
-    - name: Roda os testes do projeto
-      run: npm test
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Instala dependências
+        run: npm install
+      - name: Roda os testes do projeto
+        run: npm test
