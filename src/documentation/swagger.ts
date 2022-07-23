@@ -3,6 +3,9 @@ import assets from './assets.swagger';
 import assetsById from './assetsById.swagger';
 import investmentsBuy from './investmentsBuy.swagger';
 import investmentsSell from './investmentsSell.swagger';
+import accountById from './accountById.swagger';
+import accountStatementByCustomerId from './accountStatementByCustomerId.swagger';
+import accountAssetsByCustomerId from './accountAssetsByCustomerId.swagger';
 
 const swaggerDocument = {
   openapi: '3.0.0',
@@ -30,6 +33,15 @@ const swaggerDocument = {
     },
     '/investments/sell': {
       post: investmentsSell,
+    },
+    '/account/{id}': {
+      get: accountById,
+    },
+    '/account/statement/{id}': {
+      get: accountStatementByCustomerId,
+    },
+    '/account/assets/{id}': {
+      get: accountAssetsByCustomerId,
     },
   },
 };

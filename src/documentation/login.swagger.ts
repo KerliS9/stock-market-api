@@ -43,7 +43,9 @@ const routeLogin = {
           schema: {
             type: 'object',
             items: {
-              token: 'string',
+              token: {
+                type: 'integer',
+              },
             },
           },
         },
