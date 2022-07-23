@@ -40,5 +40,5 @@ export const assets = [
 ];
 
 export const messageAssetById = [{
-  message: 'Sorry, this assetId does not exits in our database'
-}]
+  message: 'Sorry, this assetId does not exits in our database',
+}];

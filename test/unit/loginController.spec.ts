@@ -8,7 +8,7 @@ describe('Check Login Controller POST: verify access to platform', () => {
     const req = getMockReq({
       body: {
         fullName: 'Kerli Schroeder',
-        password: '214563'
+        password: '214563',
       } });
 
     const { res } = getMockRes();
@@ -23,7 +23,7 @@ describe('Check Login Controller POST: verify access to platform', () => {
     const req = getMockReq({
       body: {
         fullName: 'KerliSchroeder',
-        password: '21456311'
+        password: '21456311',
       } });
 
     const { res } = getMockRes();

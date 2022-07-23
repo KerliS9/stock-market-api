@@ -22,7 +22,7 @@ describe('Check Account Controller GET: getAssetByCustomerId', () => {
   it('when customer doesn\t have access to the requested information', async () => {
     const req = getMockReq({
       params: {
-        id: '10'
+        id: '10',
       } });
 
     const { res } = getMockRes();
@@ -38,7 +38,7 @@ describe('Check Account Controller GET: getCustomerById', () => {
   it('when customer doesn\t have access to the requested information', async () => {
     const req = getMockReq({
       params: {
-        id: '10'
+        id: '10',
       } });
 
     const { res } = getMockRes();
@@ -54,7 +54,7 @@ describe('Check Account Controller GET: getAccountStatementByCustomerId', () => 
   it('when customer doesn\t have access to the requested information', async () => {
     const req = getMockReq({
       params: {
-        id: '10'
+        id: '10',
       } });
 
     const { res } = getMockRes();

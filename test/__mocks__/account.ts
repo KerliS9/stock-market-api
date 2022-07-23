@@ -37,17 +37,17 @@ export const accountBalance = [
   },
 ];
 
-export const messageCustomerById = { 
-  message: 'Sorry, your are not authorized to get this information' 
+export const messageCustomerById = {
+  message: 'Sorry, your are not authorized to get this information',
 };
 
 export const messageInputValue = {
   message: 'Sorry, value to deposit into account need to be greater than 0',
-}
+};
 
 export const messageOutputValue = {
   message: 'Sorry, value to withdraw from account need to be greater than 0',
-}
+};
 
 export const customers = [
   {

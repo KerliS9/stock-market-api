@@ -31,7 +31,7 @@ describe('Check Investments Controller POST: buy asset for customer that request
       } });
 
     const { res } = getMockRes();
-    
+
     jest.spyOn(InvestmentsService, 'sellAsset').mockResolvedValue(sellAsset);
     await InvestmentsController.sellAsset(req, res);
     expect(res.status).toHaveBeenCalledWith(201);

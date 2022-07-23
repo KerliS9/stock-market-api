@@ -72,7 +72,8 @@ describe('Check Account Service POST: insertDepositAtAccountByCustomerId at data
   });
   it('when value to deposit is lower than 1', async () => {
     jest.spyOn(AccountModel, 'insertDepositAtAccountByCustomerId').mockResolvedValue(undefined);
-    const response = await AccountService.insertDepositAtAccountByCustomerId(depositByCustomerIdWithoutValue);
+    const response = await AccountService
+      .insertDepositAtAccountByCustomerId(depositByCustomerIdWithoutValue);
     expect(response).toHaveProperty('message');
     expect(response.message).toBe('Sorry, value to deposit into account need to be greater than 0');
   });
@@ -90,7 +91,8 @@ describe('Check Account Service POST: insertWithdrawAtAccountByCustomerId at dat
 
   it('when value to deposit is lower than 1', async () => {
     jest.spyOn(AccountModel, 'insertWithdrawAtAccountByCustomerId').mockResolvedValue(undefined);
-    const response = await AccountService.insertWithdrawAtAccountByCustomerId(withdrawByCustomerIdWithoutValue);
+    const response = await AccountService
+      .insertWithdrawAtAccountByCustomerId(withdrawByCustomerIdWithoutValue);
     expect(response).toHaveProperty('message');
     expect(response.message).toBe('Sorry, value to withdraw from account need to be greater than 0');
   });

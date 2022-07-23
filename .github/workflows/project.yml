@@ -11,11 +11,6 @@ jobs:
         - name: Instala o node com a versão
           uses: actions/setup-node@v1.4.4
 
-        - name: instalando as dependências
-          run: npm install
-
-        - name: executando o lint para verificar se há erros
-          run: npx eslint .
   stylelint:
     runs-on: ubuntu-18.04
     steps:
