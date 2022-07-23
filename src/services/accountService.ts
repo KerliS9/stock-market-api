@@ -30,7 +30,7 @@ export default {
 
   insertDepositAtAccountByCustomerId:
   async (dataInput: IAccountInput): Promise<IAccountInput | IError> => {
-    if (dataInput.inputValue <= 0) return { message: 'Sorry, value to pay into an account need to be greater than 0' };
+    if (dataInput.inputValue <= 0) return { message: 'Sorry, value to deposit into account need to be greater than 0' };
     await AccountModel.insertDepositAtAccountByCustomerId(dataInput);
     return dataInput;
   },

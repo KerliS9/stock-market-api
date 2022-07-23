@@ -42,7 +42,7 @@ export const messageCustomerById = {
 };
 
 export const messageInputValue = {
-  message: 'Sorry, value to pay into an account need to be greater than 0',
+  message: 'Sorry, value to deposit into account need to be greater than 0',
 }
 
 export const messageOutputValue = {
