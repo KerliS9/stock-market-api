@@ -6,7 +6,7 @@ export default {
   getCustomerLogin: async (req: Request, res: Response): Promise<Response> => {
     const result = await LoginService.getCustomerLogin(req.body);
     if (result.message) {
-      return res.status(StatusCodes.UNAUTHORIZED).json(result);
+      return res.status(StatusCodes.NOT_FOUND).json(result);
     }
     return res.status(StatusCodes.OK).json(result);
   },

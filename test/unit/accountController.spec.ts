@@ -1,70 +1,68 @@
 import { getMockReq, getMockRes } from '@jest-mock/express';
 import AccountService from '../../src/services/accountService';
 import AccountController from '../../src/controllers/accountController';
-import { investmentsByCustomerId, customerById, messageCustomerById,
+import { messageCustomerById, customers,
   depositByCustomerId, messageInputValue, withdrawByCustomerId, messageOutputValue,
-  customerByIdAccountStatement,
 } from '../__mocks__/account';
 
-describe('Check Account Controller GET: getAssetByCustomerId', () => {
+describe('Check Account Controller GET: getAllCustomers', () => {
   it('should return an array of objects', async () => {
+    const req = getMockReq();
+
+    const { res } = getMockRes();
+
+    jest.spyOn(AccountService, 'getAllCustomers').mockResolvedValue(customers);
+    await AccountController.getAllCustomers(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(expect.arrayContaining(customers));
+  });
+});
+
+describe('Check Account Controller GET: getAssetByCustomerId', () => {
+  it('when customer doesn\t have access to the requested information', async () => {
     const req = getMockReq({
       params: {
-        id: '1'
+        id: '10',
       } });
 
     const { res } = getMockRes();
 
-    jest.spyOn(AccountService, 'getAssetByCustomerId').mockResolvedValue(investmentsByCustomerId);
+    jest.spyOn(AccountService, 'getAssetByCustomerId').mockResolvedValue([]);
     await AccountController.getAssetByCustomerId(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(expect.arrayContaining(investmentsByCustomerId));
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith(messageCustomerById);
   });
 });
 
 describe('Check Account Controller GET: getCustomerById', () => {
-  it('should return an object', async () => {
+  it('when customer doesn\t have access to the requested information', async () => {
     const req = getMockReq({
       params: {
-        id: '1'
+        id: '10',
       } });
 
     const { res } = getMockRes();
 
-    jest.spyOn(AccountService, 'getCustomerById').mockResolvedValue(customerById);
+    jest.spyOn(AccountService, 'getCustomerById').mockResolvedValue([]);
     await AccountController.getCustomerById(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining(customerById[0]));
-  });
-
-  it('when there are error on data informed from customer', async () => {
-    const req = getMockReq({
-      params: {
-        id: '10'
-      } });
-
-    const { res } = getMockRes();
-
-    jest.spyOn(AccountService, 'getCustomerById').mockResolvedValue(messageCustomerById);
-    await AccountController.getCustomerById(req, res);
-    expect(res.status).toHaveBeenCalledWith(404);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining(messageCustomerById[0]));
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith(messageCustomerById);
   });
 });
 
 describe('Check Account Controller GET: getAccountStatementByCustomerId', () => {
-  it('should return an array of objects', async () => {
+  it('when customer doesn\t have access to the requested information', async () => {
     const req = getMockReq({
       params: {
-        id: '1'
+        id: '10',
       } });
 
     const { res } = getMockRes();
 
-    jest.spyOn(AccountService, 'getAccountStatementByCustomerId').mockResolvedValue(customerByIdAccountStatement);
+    jest.spyOn(AccountService, 'getAccountStatementByCustomerId').mockResolvedValue([]);
     await AccountController.getAccountStatementByCustomerId(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(expect.arrayContaining(customerByIdAccountStatement));
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith(messageCustomerById);
   });
 });
 

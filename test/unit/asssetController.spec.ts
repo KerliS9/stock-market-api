@@ -24,7 +24,7 @@ describe('Check Assets Controller GET: getAssetById from database', () => {
       } });
 
     const { res } = getMockRes();
-    
+
     jest.spyOn(AssetService, 'getAssetById').mockResolvedValue(assetById);
     await AssetsController.getAssetById(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -38,7 +38,7 @@ describe('Check Assets Controller GET: getAssetById from database', () => {
       } });
 
     const { res } = getMockRes();
-    
+
     jest.spyOn(AssetService, 'getAssetById').mockResolvedValue(messageAssetById);
     await AssetsController.getAssetById(req, res);
     expect(res.status).toHaveBeenCalledWith(404);

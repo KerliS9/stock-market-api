@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  node:
+    image: node:16
+    container_name: stock_market_api
+    tty: true
+    stdin_open: true
+    command: bash
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_HOST: db 
+      PORT: '3000'
+
+  db:
+    container_name: stock_market_api_db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - 3306:3306
+
+networks:
+  default:

@@ -1,5 +1,7 @@
 import LoginModel from '../../src/models/loginModel';
 import LoginService from '../../src/services/loginService';
+
+// jest.mock('../__mocks__/login/customer');
 import { customer, login, wrongLogin } from '../__mocks__/login';
 
 describe('Check Login Service POST: getCustomerLogin from database', () => {

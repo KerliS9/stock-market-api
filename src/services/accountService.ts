@@ -18,8 +18,6 @@ export default {
   },
 
   getCustomerById: async (id: number) => {
-    const customerExits = await AccountModel.getCustomerById(id);
-    if (customerExits.length === 0) return [{ message: 'Sorry, this customer still doesn\t have an account with us' }];
     const accountStatement = await AccountModel.getCustomerAccountBalance(id);
     const { accountBalance } = accountStatement[0];
     await AccountModel.updateAccountBalanceByCustomerId(id, accountBalance);
@@ -32,7 +30,7 @@ export default {
 
   insertDepositAtAccountByCustomerId:
   async (dataInput: IAccountInput): Promise<IAccountInput | IError> => {
-    if (dataInput.inputValue <= 0) return { message: 'Sorry, value to pay into an account need to be greater than 0' };
+    if (dataInput.inputValue <= 0) return { message: 'Sorry, value to deposit into account need to be greater than 0' };
     await AccountModel.insertDepositAtAccountByCustomerId(dataInput);
     return dataInput;
   },

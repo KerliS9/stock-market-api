@@ -49,12 +49,6 @@ describe('Check Account Service GET: getCustomerById from database', () => {
     expect(response).toHaveProperty('investorProfile');
     expect(response).toHaveProperty('accountBalance');
   });
-  it('when don\t exists this customerId on database', async () => {
-    jest.spyOn(AccountModel, 'getCustomerById').mockResolvedValue([]);
-    const [response] = await AccountService.getCustomerById(10);
-    expect(response).toHaveProperty('message');
-    expect(response.message).toBe('Sorry, this customer still doesn\t have an account with us');
-  });
 });
 
 describe('Check Account Service GET: getAccountStatementByCustomerId from database', () => {
@@ -78,9 +72,10 @@ describe('Check Account Service POST: insertDepositAtAccountByCustomerId at data
   });
   it('when value to deposit is lower than 1', async () => {
     jest.spyOn(AccountModel, 'insertDepositAtAccountByCustomerId').mockResolvedValue(undefined);
-    const response = await AccountService.insertDepositAtAccountByCustomerId(depositByCustomerIdWithoutValue);
+    const response = await AccountService
+      .insertDepositAtAccountByCustomerId(depositByCustomerIdWithoutValue);
     expect(response).toHaveProperty('message');
-    expect(response.message).toBe('Sorry, value to pay into an account need to be greater than 0');
+    expect(response.message).toBe('Sorry, value to deposit into account need to be greater than 0');
   });
 });
 
@@ -96,7 +91,8 @@ describe('Check Account Service POST: insertWithdrawAtAccountByCustomerId at dat
 
   it('when value to deposit is lower than 1', async () => {
     jest.spyOn(AccountModel, 'insertWithdrawAtAccountByCustomerId').mockResolvedValue(undefined);
-    const response = await AccountService.insertWithdrawAtAccountByCustomerId(withdrawByCustomerIdWithoutValue);
+    const response = await AccountService
+      .insertWithdrawAtAccountByCustomerId(withdrawByCustomerIdWithoutValue);
     expect(response).toHaveProperty('message');
     expect(response.message).toBe('Sorry, value to withdraw from account need to be greater than 0');
   });
