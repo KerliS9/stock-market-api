@@ -30,7 +30,7 @@ describe('Check Login Controller POST: verify access to platform', () => {
 
     jest.spyOn(LoginService, 'getCustomerLogin').mockResolvedValue(loginError);
     await LoginController.getCustomerLogin(req, res);
-    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining(loginError));
   });
 });

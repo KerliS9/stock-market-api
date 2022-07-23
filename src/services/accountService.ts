@@ -18,8 +18,6 @@ export default {
   },
 
   getCustomerById: async (id: number) => {
-    const customerExits = await AccountModel.getCustomerById(id);
-    if (customerExits.length === 0) return [{ message: 'Sorry, this customer still doesn\t have an account with us' }];
     const accountStatement = await AccountModel.getCustomerAccountBalance(id);
     const { accountBalance } = accountStatement[0];
     await AccountModel.updateAccountBalanceByCustomerId(id, accountBalance);

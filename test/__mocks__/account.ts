@@ -37,11 +37,9 @@ export const accountBalance = [
   },
 ];
 
-export const messageCustomerById = [
-  {
-    message: 'Sorry, this customer still doesn\t have an account with us',
-  },
-];
+export const messageCustomerById = { 
+  message: 'Sorry, your are not authorized to get this information' 
+};
 
 export const messageInputValue = {
   message: 'Sorry, value to pay into an account need to be greater than 0',

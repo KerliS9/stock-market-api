@@ -49,12 +49,6 @@ describe('Check Account Service GET: getCustomerById from database', () => {
     expect(response).toHaveProperty('investorProfile');
     expect(response).toHaveProperty('accountBalance');
   });
-  it('when don\t exists this customerId on database', async () => {
-    jest.spyOn(AccountModel, 'getCustomerById').mockResolvedValue([]);
-    const [response] = await AccountService.getCustomerById(10);
-    expect(response).toHaveProperty('message');
-    expect(response.message).toBe('Sorry, this customer still doesn\t have an account with us');
-  });
 });
 
 describe('Check Account Service GET: getAccountStatementByCustomerId from database', () => {
