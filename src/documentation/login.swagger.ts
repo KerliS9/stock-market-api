@@ -9,16 +9,11 @@ const routeLogin = {
         schema: {
           type: 'object',
           items: {
-            BodyLogin: {
-              type: 'object',
-              properties: {
-                fullName: {
-                  type: 'string',
-                },
-                password: {
-                  type: 'string',
-                },
-              },
+            fullName: {
+              type: 'string',
+            },
+            password: {
+              type: 'string',
             },
           },
         },

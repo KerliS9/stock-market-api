@@ -19,25 +19,20 @@ const routeAssetsById = {
           schema: {
             type: 'object',
             items: {
-              ResponseAssetById: {
-                type: 'object',
-                properties: {
-                  assetId: {
-                    type: 'integer',
-                  },
-                  asset: {
-                    type: 'string',
-                  },
-                  price: {
-                    type: 'decimal',
-                  },
-                  broker: {
-                    type: 'string',
-                  },
-                  amountAsset: {
-                    type: 'integer',
-                  },
-                },
+              assetId: {
+                type: 'integer',
+              },
+              asset: {
+                type: 'string',
+              },
+              price: {
+                type: 'decimal',
+              },
+              broker: {
+                type: 'string',
+              },
+              amountAsset: {
+                type: 'integer',
               },
             },
           },

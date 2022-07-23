@@ -1,6 +1,8 @@
 import routeLogin from './login.swagger';
 import assets from './assets.swagger';
 import assetsById from './assetsById.swagger';
+import investmentsBuy from './investmentsBuy.swagger';
+import investmentsSell from './investmentsSell.swagger';
 
 const swaggerDocument = {
   openapi: '3.0.0',
@@ -22,6 +24,12 @@ const swaggerDocument = {
     },
     '/assets/{id}': {
       get: assetsById,
+    },
+    '/investments/buy': {
+      post: investmentsBuy,
+    },
+    '/investments/sell': {
+      post: investmentsSell,
     },
   },
 };

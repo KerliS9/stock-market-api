@@ -11,25 +11,20 @@ const routeAssets = {
           schema: {
             type: 'array',
             items: {
-              ResponseAssets: {
-                type: 'object',
-                properties: {
-                  id: {
-                    type: 'integer',
-                  },
-                  asset: {
-                    type: 'string',
-                  },
-                  price: {
-                    type: 'decimal',
-                  },
-                  sector: {
-                    type: 'string',
-                  },
-                  company: {
-                    type: 'string',
-                  },
-                },
+              id: {
+                type: 'integer',
+              },
+              asset: {
+                type: 'string',
+              },
+              price: {
+                type: 'decimal',
+              },
+              sector: {
+                type: 'string',
+              },
+              company: {
+                type: 'string',
               },
             },
           },
