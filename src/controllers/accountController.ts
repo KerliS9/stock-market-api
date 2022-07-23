@@ -14,6 +14,10 @@ export default {
   },
 
   getCustomerById: async (req: Request, res: Response): Promise<Response> => {
+    const { id } = res.locals;
+    if (id !== +req.params.id) {
+      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Sorry, your are not authorized to get this information' });
+    }
     const result = await AccountService.getCustomerById(+req.params.id);
     if (result[0].message) {
       return res.status(StatusCodes.NOT_FOUND).json(result[0]);

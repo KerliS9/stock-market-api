@@ -9,3 +9,9 @@ export interface IUserData {
   fullName: string;
   investorProfile: string;
 }
+
+export interface IPayload {
+  id: number;
+  fullName: string;
+  investorProfile: string;
+}
