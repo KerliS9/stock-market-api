@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.ts",
     "test": "jest --verbose",
     "test:cov": "jest --coverage",
     "lint": "eslint . --ext .ts",

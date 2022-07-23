@@ -1,6 +1,17 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+      
 build:
   docker:
     web: Dockerfile
+    worker: worker/Dockerfile
+
+release:
+  command:
+    - ./deployment-tasks.sh
+  image: worker
 
 run:
   web: node server.ts
