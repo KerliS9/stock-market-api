@@ -74,7 +74,7 @@ describe('Check Account Service POST: insertDepositAtAccountByCustomerId at data
     jest.spyOn(AccountModel, 'insertDepositAtAccountByCustomerId').mockResolvedValue(undefined);
     const response = await AccountService.insertDepositAtAccountByCustomerId(depositByCustomerIdWithoutValue);
     expect(response).toHaveProperty('message');
-    expect(response.message).toBe('Sorry, value to pay into an account need to be greater than 0');
+    expect(response.message).toBe('Sorry, value to deposit into account need to be greater than 0');
   });
 });
 

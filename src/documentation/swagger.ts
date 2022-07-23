@@ -1,13 +1,13 @@
-import routeLogin from './login.swagger';
-import assets from './assets.swagger';
-import assetsById from './assetsById.swagger';
-import investmentsBuy from './investmentsBuy.swagger';
-import investmentsSell from './investmentsSell.swagger';
-import accountById from './accountById.swagger';
-import accountStatementByCustomerId from './accountStatementByCustomerId.swagger';
-import accountAssetsByCustomerId from './accountAssetsByCustomerId.swagger';
-import accountInput from './accountInput.swagger';
-import accountOutput from './accountOutput.swagger';
+import routeLogin from './routesLogin.ts/login.swagger';
+import assets from './routesAssets/assets.swagger';
+import assetsById from './routesAssets/assetsById.swagger';
+import investmentsBuy from './routesInvestments/investmentsBuy.swagger';
+import investmentsSell from './routesInvestments/investmentsSell.swagger';
+import accountById from './routesAccount/accountById.swagger';
+import accountStatementByCustomerId from './routesAccount/accountStatementByCustomerId.swagger';
+import accountAssetsByCustomerId from './routesAccount/accountAssetsByCustomerId.swagger';
+import accountInput from './routesAccount/accountInput.swagger';
+import accountOutput from './routesAccount/accountOutput.swagger';
 
 const swaggerDocument = {
   openapi: '3.0.0',
