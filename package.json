@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --verbose test",    
     "test:cov": "jest --coverage",
-    "build": "tsc",
-    "start": "node dist/src/server.js",
+    "build": "tsc -p .",
+    "start": "node dist/server.js",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "dev": "nodemon --exec npx ts-node src/server.ts",
