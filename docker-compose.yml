@@ -5,9 +5,9 @@ services:
     build: .
     # image: node:alpine
     container_name: stock_market_api
-    tty: true
-    stdin_open: true
-    command: bash
+    # tty: true
+    # stdin_open: true
+    # command: bash
     restart: always
     # working_dir: /app
     volumes:
