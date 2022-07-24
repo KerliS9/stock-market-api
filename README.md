@@ -10,7 +10,7 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 <details>
   <summary><strong> :memo: Desenho inicial do projeto</strong></summary><br />
   <div style="display: inline_block">
-    <img alt="planningProject" height="250" width="400" src="./images/planning.png"/>
+    <img alt="planningProject" height="350" width="600" src="./images/planning.png"/>
   </div>
 </details>
 
@@ -74,7 +74,7 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 <details>
   <summary><strong>🏦 Tabelas do banco</strong></summary><br />
   <div style="display: inline_block">
-    <img alt="planningProject" height="250" width="400" src="./images/tables.png"/>
+    <img alt="relationsBetweenTables" height="350" width="600" src="./images/tables.png"/>
   </div>
 
   O banco tem 7 tabelas - direcionadas a 3 entidades.
@@ -165,24 +165,41 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
   <summary><strong>🛠 Linguagens e ferramentas usadas</strong></summary>
 
   ### Para construção do projeto:
-  - TypeScript;
-  - Express;
-  - Joi
-  - JsonWebToken
-  - EsLint
-  - nodemon
-  - mysql
-  - dockerCompose
-  - dotenv
-  - http-status-codes
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [Node.js](https://nodejs.org/en/)
+  - [Express](http://expressjs.com/)
+  - [Joi](https://www.npmjs.com/package/joi)
+  - [JWT](https://jwt.io/)
+  - [EsLint](https://eslint.org/)
+  - [nodemon](https://www.npmjs.com/package/nodemon)
+  - [mysql](https://www.mysql.com/)
+  - [docker](https://www.docker.com/)
+  - [dotenv](https://www.npmjs.com/package/dotenv)
+  - [http-status-codes](https://www.npmjs.com/package/http-status-codes)
 
   ### Para os testes unitários:
-  - ts-jest
-  - jest-express
+  - [ts-jest](https://www.npmjs.com/package/ts-jest)
+  - [jest-mock/express](https://www.npmjs.com/package/@jest-mock/express)
 
   ### Para documentação
-  - swaggerUi
+  - [swaggerUi](https://swagger.io/tools/swagger-ui/)
 
+</details>
+
+### Documentação
+
+Disponível na pasta ./src/documentation <br />
+Separada por subpastas, conforme a rota.
+
+  <div style="display: inline_block">
+    <img alt="routesOnProject" height="350" width="600" src="./images/routesOnSwagger.png"/>
+  </div>
+
+<details>
+  <summary><strong> Exemplo: por dentro da rota</strong></summary><br />
+  <div style="display: inline_block">
+    <img alt="exampleRoute" height="350" width="600" src="./images/routeAccountInput.png"/>
+  </div>
 </details>
 
 <details>
