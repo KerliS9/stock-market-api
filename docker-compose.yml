@@ -2,30 +2,34 @@ version: "3"
 
 services:
   node:
-    image: node:16
+    build: .
+    # image: node:alpine
     container_name: stock_market_api
-    # build: ./web
     tty: true
     stdin_open: true
     command: bash
     restart: always
-    working_dir: /app
+    # working_dir: /app
     volumes:
-      - ./:/app
+      - ./:/src
     depends_on:
       - db
     ports:
       - 3000:3000
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_HOST: db
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DB: ${MYSQL_DB}
+      SECRET: ${SECRET}
+      PORT: ${PORT}
 
   db:
     container_name: stock_market_api_db
     image: mysql:5.7
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - 3306:3306
 
