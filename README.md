@@ -30,6 +30,12 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 <details>
   <summary><strong>👨‍💻 Para executar o projeto</strong></summary><br />
 
+  > ✨ **Dica:** Para um melhor aproveitamento é recomendável ter as ferramentas abaixo instaladas na sua máquina <br />
+  > - Editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)<br />
+  > - [Docker]((https://www.docker.com/)) para executar o projeto por container <br />
+  > - Ferramenta visual para interagir com o banco de dados, como o [Workbench](https://dev.mysql.com/downloads/workbench/) <br />
+  > - Ferramenta de API REST, como [Insomnia](https://insomnia.rest/download)
+
   1. Clone o repositório, com o comando abaixo, no terminal:
 
   - `git clone git@github.com:KerliS9/stock-market-api.git`
@@ -61,12 +67,20 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
   9. Acesse a sua ferramenta de API REST preferida, exemplo insomnia e simule o uso das rotas conforme o arquivo .src/routes/ <br />
    ⚠ Atenção ⚠  Todas as rotas que solicitem informação específica de um cliente possuem validação por token.
 
+  10. Para rodar os testes unitários
+
+  - `npm run test`
+
+  11. Para verificar a cobertura dos testes
+
+  - `npm run test:cov`
+
   <details>
     <summary>Rodando sem uso do Docker</summary><br />
 
     - Passos 1 á 3, segue da mesma forma
 
-    Em substituição ao passo 4, será obrigatória a instalação dos pacotes Node v16 e MySql
+    Em substituição ao passo 5, será obrigatória a instalação dos pacotes Node v16 e MySql
 
   </details>
 </details>
@@ -205,7 +219,9 @@ Separada por subpastas, conforme a rota.
 <details>
   <summary><strong> :construction: Implementações a serem realizadas</strong></summary>
   
-  Deploy do projeto
+  Deploy do projeto<br />
   Deploy do banco de dados
 
 </details>
+
+Projeto desenvolvido por Kerli Schroeder :hugs:
