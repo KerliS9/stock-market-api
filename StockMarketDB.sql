@@ -19,7 +19,7 @@ CREATE TABLE StockMarketDB.Account_Statement (
   PRIMARY KEY (id),
   FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE
 )ENGINE=InnoDB;
- 
+
 CREATE TABLE StockMarketDB.Market_Assets (
   id int AUTO_INCREMENT NOT NULL,
   asset varchar(6) NOT NULL,
@@ -59,9 +59,9 @@ CREATE TABLE StockMarketDB.Customer_Investments (
 
 CREATE TABLE StockMarketDB.Customer_Custody (
 	customer_id int NOT NULL,
-    asset_id int NOT NULL,
+  asset_id int NOT NULL,
 	amount_asset int NOT NULL,
-    sector varchar(100) NOT NULL
+  sector varchar(100) NOT NULL
 )ENGINE=InnoDB;
 SET SQL_SAFE_UPDATES = 0;
 

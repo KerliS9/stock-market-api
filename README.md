@@ -25,6 +25,93 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
  - Alterei a realização dos testes para usar o framework Jest, pois tive muita dificuldade para entender os erros retornados com o Sinon;
 
 <details>
+  <summary><strong>🪑 Tabelas</strong></summary><br />
+  O banco tem 7 tabelas - direcionadas a 3 entidades.
+
+  <details>
+    <summary><strong>Entidade customer</strong></summary><br />
+
+    ```sql
+    CREATE TABLE StockMarketDB.Customer (
+      id int AUTO_INCREMENT NOT NULL,
+      full_name varchar(100) NOT NULL,
+      password varchar(12) NOT NULL,
+      investor_profile varchar(50) NOT NULL,
+      account_balance decimal(19, 2) NOT NULL,
+      PRIMARY KEY (id) 
+    )ENGINE=InnoDB;
+
+    CREATE TABLE StockMarketDB.Account_Statement (
+      id int AUTO_INCREMENT NOT NULL,
+      customer_id int NOT NULL,
+      account_input decimal(19, 2),
+      account_output decimal(19, 2),
+      date DATETIME DEFAULT CURRENT_TIMESTAMP,
+      PRIMARY KEY (id),
+      FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE
+    )ENGINE=InnoDB;
+
+    CREATE TABLE StockMarketDB.Customer_Custody (
+      customer_id int NOT NULL,
+      asset_id int NOT NULL,
+      amount_asset int NOT NULL,
+      sector varchar(100) NOT NULL
+    )ENGINE=InnoDB;
+    ```
+  </details>
+
+  <details>
+    <summary><strong>Entidade ativos</strong></summary><br />
+
+    ```sql
+    CREATE TABLE StockMarketDB.Market_Assets (
+      id int AUTO_INCREMENT NOT NULL,
+      asset varchar(6) NOT NULL,
+      price decimal(19, 2) NOT NULL,
+      PRIMARY KEY (id)
+    )ENGINE=InnoDB;
+
+    CREATE TABLE StockMarketDB.Brokerage_Firms (
+      id int AUTO_INCREMENT NOT NULL,
+      broker varchar(100) NOT NULL,
+      asset_id int NOT NULL,
+      amount_asset int NOT NULL,
+      PRIMARY KEY (id),
+      FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
+    )ENGINE=InnoDB;
+
+    CREATE TABLE StockMarketDB.Companies (
+      id int AUTO_INCREMENT NOT NULL,
+      asset_id int NOT NULL,
+      company varchar(250) NOT NULL,
+      sector varchar(100) NOT NULL,
+      PRIMARY KEY (id),
+      FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
+    )ENGINE=InnoDB;
+    ```
+  </details>
+
+  <details>
+    <summary><strong>Entidade investimentos</strong></summary><br />
+
+    ```sql
+    CREATE TABLE StockMarketDB.Customer_Investments (
+      id int AUTO_INCREMENT NOT NULL,
+      customer_id int NOT NULL,
+      asset_id int NOT NULL,
+      amount_asset_take int,
+      amount_asset_sell int,
+      date DATETIME DEFAULT CURRENT_TIMESTAMP, 
+      PRIMARY KEY (id),
+      FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE,
+      FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
+    )ENGINE=InnoDB;
+    ```
+  </details>
+
+</details>
+
+<details>
 <summary><strong>👨‍💻 Para executar o projeto</strong></summary><br />
 
   1. Clone o repositório, com o comando abaixo, no terminal:
@@ -55,16 +142,19 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
   Atenção: todas as rotas que solicitem informação específica de um cliente possuem validação por token.
 
   <details>
-    <summary> Rodando sem uso do Docker</summary><br />
-    > Passos 1 á 3, segue da mesma forma
+    <summary>Rodando sem uso do Docker</summary><br />
+
+    Passos 1 á 3, segue da mesma forma
+
     Em substituição ao passo 4, será obrigatória a instalação dos pacotes Node v16 e MySql
 
   </details>
 </details>
 
-## Linguagens e ferramentas usadas
+<details>
+<summary><strong>🛠 Linguagens e ferramentas usadas</strong></summary><br />
 
-Para construção do projeto:
+### Para construção do projeto:
  - TypeScript;
  - Express;
  - Joi
@@ -76,9 +166,11 @@ Para construção do projeto:
  - dotenv
  - http-status-codes
 
-Para os testes unitários:
+### Para os testes unitários:
  - ts-jest
  - jest-express
 
-Para documentação
+### Para documentação
  - swaggerUi
+
+</details>
