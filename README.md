@@ -55,7 +55,7 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 
   - `npm run dev`
 
-  8. Acesse a sua ferramenta de API REST preferida, exemplo insomnia e simule o uso das rotas conforme o arquivo .src/routes/
+  8. Acesse a sua ferramenta de API REST preferida, exemplo insomnia e simule o uso das rotas conforme o arquivo .src/routes/ <br />
    ⚠ Atenção ⚠  Todas as rotas que solicitem informação específica de um cliente possuem validação por token.
 
   <details>

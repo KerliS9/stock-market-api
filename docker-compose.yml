@@ -2,16 +2,16 @@ version: "3"
 
 services:
   node:
-    # image: node:16
+    image: node:16
     container_name: stock_market_api
-    build: ./web
+    # build: ./web
     tty: true
     stdin_open: true
     command: bash
     restart: always
-    # working_dir: /app
+    working_dir: /app
     volumes:
-      - ./:/src
+      - ./:/app
     depends_on:
       - db
     ports:

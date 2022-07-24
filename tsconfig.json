@@ -104,4 +104,5 @@
   "include": [
     "src/**/*"
   ] /* aqui estamos incluindo todos os arquivos dentro da pasta src */,
+  "exclude": ["node_modules", "**/*.spec.ts"] /* aqui está excluindo a pasta node_modules e os arquivos de teste */
 }
