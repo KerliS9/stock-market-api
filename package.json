@@ -1,13 +1,13 @@
 {
   "name": "stock-market-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simula a ação de um cliente numa corretora",
   "main": "src/server.js",
   "scripts": {
     "test": "jest --verbose test",    
     "test:cov": "jest --coverage",
-    "build": "tsc",
-    "start": "ts-node src/server.ts",
+    "build": "tsc -p .",
+    "start": "node dist/server.js",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "dev": "nodemon --exec npx ts-node src/server.ts",
@@ -18,7 +18,7 @@
     "url": "git+https://github.com/KerliS9/stock-market-api.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kerli Schroeder",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KerliS9/stock-market-api/issues"
