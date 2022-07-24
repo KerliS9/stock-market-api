@@ -10,7 +10,7 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 <details>
   <summary><strong> :memo: Desenho inicial do projeto</strong></summary><br />
   <div style="display: inline_block">
-    <img alt="planningProject" height="250" width="400" src="./planning.png"/>
+    <img alt="planningProject" height="350" width="600" src="./images/planning.png"/>
   </div>
 </details>
 
@@ -42,26 +42,29 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 
   - `npm install`
 
-  4. Se tiver o docker instalado e configurado na máquina: digite no terminal o comando abaixo <br />
-  Caso contrário, vá para o passo 'Rodando sem o docker' e depois retorne ao passo 5
+  4. Configure as variáveis de ambiente no arquivo .env, conforme o exemplo informado no arquivo example.env
+
+  5. Se tiver o docker instalado e configurado na máquina: digite no terminal o comando abaixo <br />
+  Caso contrário, vá para o passo 'Rodando sem o docker' e depois retorne ao passo 5 <br />
+  ⚠ Atenção ⚠ Se atente para as portas que você está configurando no .env e/ou a porta padrão usada pelo mysql(3306) <br />
 
   - `docker-compose up -d`
 
-  5. Copie o arquivo script 'StockMarketDB.sql' da pasta stock-market-api e cole na sua ferramenta visual de preferência, exemplo Mysql Workbench
+  6. Copie o arquivo script 'StockMarketDB.sql' da pasta stock-market-api e cole na sua ferramenta visual de preferência, exemplo Mysql Workbench
 
-  6. Execute o script no Workbench 
+  7. Execute o script no Workbench
 
-  7. Volte ao seu terminal e digite
+  8. Volte ao seu terminal e digite
 
   - `npm run dev`
 
-  8. Acesse a sua ferramenta de API REST preferida, exemplo insomnia e simule o uso das rotas conforme o arquivo .src/routes/ <br />
+  9. Acesse a sua ferramenta de API REST preferida, exemplo insomnia e simule o uso das rotas conforme o arquivo .src/routes/ <br />
    ⚠ Atenção ⚠  Todas as rotas que solicitem informação específica de um cliente possuem validação por token.
 
   <details>
     <summary>Rodando sem uso do Docker</summary><br />
 
-    Passos 1 á 3, segue da mesma forma
+    - Passos 1 á 3, segue da mesma forma
 
     Em substituição ao passo 4, será obrigatória a instalação dos pacotes Node v16 e MySql
 
@@ -70,8 +73,11 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
 
 <details>
   <summary><strong>🏦 Tabelas do banco</strong></summary><br />
-  O banco tem 7 tabelas - direcionadas a 3 entidades.
+  <div style="display: inline_block">
+    <img alt="relationsBetweenTables" height="350" width="600" src="./images/tables.png"/>
+  </div>
 
+  O banco tem 7 tabelas - direcionadas a 3 entidades.
   <details>
     <summary><strong>Entidade Cliente</strong></summary><br />
 
@@ -159,22 +165,47 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
   <summary><strong>🛠 Linguagens e ferramentas usadas</strong></summary>
 
   ### Para construção do projeto:
-  - TypeScript;
-  - Express;
-  - Joi
-  - JsonWebToken
-  - EsLint
-  - nodemon
-  - mysql
-  - dockerCompose
-  - dotenv
-  - http-status-codes
+  - [TypeScript](https://www.typescriptlang.org/)
+  - [Node.js](https://nodejs.org/en/)
+  - [Express](http://expressjs.com/)
+  - [Joi](https://www.npmjs.com/package/joi)
+  - [JWT](https://jwt.io/)
+  - [EsLint](https://eslint.org/)
+  - [nodemon](https://www.npmjs.com/package/nodemon)
+  - [mysql](https://www.mysql.com/)
+  - [docker](https://www.docker.com/)
+  - [dotenv](https://www.npmjs.com/package/dotenv)
+  - [http-status-codes](https://www.npmjs.com/package/http-status-codes)
 
   ### Para os testes unitários:
-  - ts-jest
-  - jest-express
+  - [ts-jest](https://www.npmjs.com/package/ts-jest)
+  - [jest-mock/express](https://www.npmjs.com/package/@jest-mock/express)
 
   ### Para documentação
-  - swaggerUi
+  - [swaggerUi](https://swagger.io/tools/swagger-ui/)
+
+</details>
+
+### Documentação
+
+Disponível na pasta ./src/documentation <br />
+Separada por subpastas, conforme a rota.
+
+  <div style="display: inline_block">
+    <img alt="routesOnProject" height="350" width="600" src="./images/routesOnSwagger.png"/>
+  </div>
+
+<details>
+  <summary><strong> Exemplo: por dentro da rota</strong></summary><br />
+  <div style="display: inline_block">
+    <img alt="exampleRoute" height="350" width="600" src="./images/routeAccountInput.png"/>
+  </div>
+</details>
+
+<details>
+  <summary><strong> :construction: Implementações a serem realizadas</strong></summary>
+  
+  Deploy do projeto
+  Deploy do banco de dados
 
 </details>

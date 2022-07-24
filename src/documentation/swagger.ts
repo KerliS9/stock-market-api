@@ -20,7 +20,7 @@ const swaggerDocument = {
     },
     version: '1.0.0',
   },
-  path: {
+  paths: {
     '/login': {
       post: routeLogin,
     },
