@@ -4,17 +4,18 @@ CREATE SCHEMA IF NOT EXISTS StockMarketDB;
 CREATE TABLE StockMarketDB.Customer (
   id int AUTO_INCREMENT NOT NULL,
   full_name varchar(100) NOT NULL,
+  cpf CHAR(11) NOT NULL,
   password varchar(12) NOT NULL,
   investor_profile varchar(50) NOT NULL,
-  account_balance decimal(19, 2) NOT NULL,
+  account_balance DECIMAL(19, 2),
   PRIMARY KEY (id) 
 )ENGINE=InnoDB;
 
 CREATE TABLE StockMarketDB.Account_Statement (
   id int AUTO_INCREMENT NOT NULL,
   customer_id int NOT NULL,
-  account_input decimal(19, 2),
-  account_output decimal(19, 2),
+  account_input DECIMAL(19, 2),
+  account_output DECIMAL(19, 2),
   date DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE
@@ -23,7 +24,46 @@ CREATE TABLE StockMarketDB.Account_Statement (
 CREATE TABLE StockMarketDB.Market_Assets (
   id int AUTO_INCREMENT NOT NULL,
   asset varchar(6) NOT NULL,
-  price decimal(19, 2) NOT NULL,
+  price DECIMAL(9, 2) NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+CREATE TABLE StockMarketDB.Brokerage_Firms (
+  id int AUTO_INCREMENT NOT NULL,
+  broker varchar(100) NOT NULL,
+  asset_id int NOT NULL,
+  amount_asset int NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (asset_id) REFERENCES StockMarketDB.Market_Assets (id) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE StockMarketDB.CompaniDROP SCHEMA IF EXISTS StockMarketDB;
+CREATE SCHEMA IF NOT EXISTS StockMarketDB;
+
+CREATE TABLE StockMarketDB.Customer (
+  id int AUTO_INCREMENT NOT NULL,
+  full_name varchar(100) NOT NULL,
+  cpf CHAR(11) NOT NULL,
+  password varchar(12) NOT NULL,
+  investor_profile varchar(50) NOT NULL,
+  account_balance DECIMAL(19, 2),
+  PRIMARY KEY (id) 
+)ENGINE=InnoDB;
+
+CREATE TABLE StockMarketDB.Account_Statement (
+  id int AUTO_INCREMENT NOT NULL,
+  customer_id int NOT NULL,
+  account_input DECIMAL(19, 2),
+  account_output DECIMAL(19, 2),
+  date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES StockMarketDB.Customer (id) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE StockMarketDB.Market_Assets (
+  id int AUTO_INCREMENT NOT NULL,
+  asset varchar(6) NOT NULL,
+  price DECIMAL(9, 2) NOT NULL,
   PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
@@ -58,21 +98,21 @@ CREATE TABLE StockMarketDB.Customer_Investments (
 )ENGINE=InnoDB;
 
 CREATE TABLE StockMarketDB.Customer_Custody (
-	customer_id int NOT NULL,
+  customer_id int NOT NULL,
   asset_id int NOT NULL,
-	amount_asset int NOT NULL,
+  amount_asset int NOT NULL,
   sector varchar(100) NOT NULL
 )ENGINE=InnoDB;
 SET SQL_SAFE_UPDATES = 0;
 
 INSERT INTO
-  StockMarketDB.Customer (full_name, password, investor_profile, account_balance)
+  StockMarketDB.Customer (full_name, password, cpf, investor_profile, account_balance)
 VALUES
-  ("Kerli Schroeder", "214563", "Arrojado", 0),
-  ("Mauricio Gerahrdt", "258796", "Arrojado", 0),
-  ("Joao Silva", "235461", "Arrojado", 0),
-  ("Marco Antonio", "879546", "Moderado", 0),
-  ("Maria Julia", "564897", "Conservador", 0);
+  ("Kerli Schroeder", "214563", 12345678901, "Arrojado", 0),
+  ("Mauricio Gerahrdt", "258796", 14785236998, "Arrojado", 0),
+  ("Joao Silva", "235461", 00258741369, "Arrojado", 0),
+  ("Marco Antonio", "879546", 25878996321, "Moderado", 0),
+  ("Maria Julia", "564897", 25878963104,  "Conservador", 0);
   
 INSERT INTO
   StockMarketDB.Account_Statement (customer_id, account_input, account_output, date)

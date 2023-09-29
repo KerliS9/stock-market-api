@@ -1,3 +1,4 @@
+ref: refs/remotes/origin/master
 on: 
   [push, pull_request]
 
