@@ -27,38 +27,6 @@ Este projeto tem por objetivo simular as operações que são possíveis de sere
  - Optei por iniciar os testes com Mocha/Chai/Sinon pois era o framework que da a opção de testar as chaves de um objeto em uma linha de código;
  - Alterei a realização dos testes para usar o framework Jest, pois tive muita dificuldade para entender os erros retornados com o Sinon;
 
-<details>
-  <summary><strong>👨‍💻 Para executar o projeto</strong></summary><br />
-
-  > ✨ **Dica:** Para um melhor aproveitamento é recomendável ter as ferramentas abaixo instaladas na sua máquina <br />
-  > - Editor para trabalhar com o código como [VSCode](https://co## Olá, bem vindo a este repositório :blush:
-
-Abaixo relato os desafios encontrados para realização do projeto, os motivos de certas escolhas, como você pode clonar o projeto, bem como as tecnologias que foram usadas.
-
-
-## Contexto geral
-
-Este projeto tem por objetivo simular as operações que são possíveis de serem realizadas por um cliente cadastrado numa corretora.
-
-<details>
-  <summary><strong> :memo: Desenho inicial do projeto</strong></summary><br />
-  <div style="display: inline_block">
-    <img alt="planningProject" height="350" width="600" src="./images/planning.png"/>
-  </div>
-</details>
-
-## Principais desafios encontrados :books:
- - Montar as tabelas(1:N ou N:N), de forma que ficassem enxutas e tivessem um bom relacionamento;
- - Preparar o ambiente para os testes, pois era a primeira vez que fiz a instalação inicial em uma aplicação com testes;
- - Simular as funções com o framework Sinon, devido a dificuldade de interpretar os erros de tipagem que ocorriam nos testes;
- - Decisão de parar de usar os frameworks Sinon/Mocha/Chai e passar a usar o framework Jest.
-
-## Porque das escolhas tomadas :top:
- - Optei por criar as 'queries' sem usar ORM(Object-Relational Mapping) para treinar a lógica de como os relacionamentos acontecem dentro do mysql;
- - Escolhi typescript pois tem o benefício da tipagem dos retornos e assim acelera a identificação dos erros;
- - Escolhi usar autenticação por JsonWebToken, pois já conhecia as tipagens necessárias para os parâmetros e retornos;
- - Optei por iniciar os testes com Mocha/Chai/Sinon pois era o framework que da a opção de testar as chaves de um objeto em uma linha de código;
- - Alterei a realização dos testes para usar o framework Jest, pois tive muita dificuldade para entender os erros retornados com o Sinon;
 
 <details>
   <summary><strong>👨‍💻 Para executar o projeto</strong></summary><br />
